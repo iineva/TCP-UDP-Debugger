@@ -18,53 +18,74 @@ enum TUSessionProtocol: Int {
     case TCP = 0, UDP
 }
 
-/// 多连接选项
-struct TUSessionMultiLinkOptions: OptionSetType {
-    let rawValue: Int
-    
-    // 无
-    static let None                 = TUSessionMultiLinkOptions(rawValue: 0)
-    
-    // 目标IP递增
-    static let TargetIPIncrement    = TUSessionMultiLinkOptions(rawValue: 1 << 0)
-    
-    // 目标端口递增
-    static let TargetPortIncrement  = TUSessionMultiLinkOptions(rawValue: 1 << 1)
-    
-    // 本地端口递增
-    static let LocalPortIncrement   = TUSessionMultiLinkOptions(rawValue: 1 << 2)
+/**
+连接模式
+*/
+enum TUSessionMode: Int {
+    case TCPClient, TCPServer, UDPNormal, UDPGrup, UDPBroadcast
 }
 
 /// 会话信息
 class TUSession {
     
     // 会话协议
-    var sessionProtocol = TUSessionProtocol.TCP
+    var sessionProtocol = TUSessionProtocol.TCP {
+        willSet {
+            switch mode {
+            case .TCPClient, .TCPServer:
+                if newValue == .UDP {
+                    mode = .TCPClient
+                }
+            case .UDPNormal, .UDPGrup, .UDPBroadcast:
+                if newValue == .TCP {
+                    mode = .UDPNormal
+                }
+            }
+        }
+    }
+    
+    // 连接模式
+    var mode = TUSessionMode.TCPClient {
+        didSet {
+            switch oldValue {
+            case .TCPClient, .TCPServer:
+                if sessionProtocol == .UDP {
+                    mode = TUSessionMode.TCPClient
+                }
+            case .UDPNormal, .UDPGrup, .UDPBroadcast:
+                if sessionProtocol == .TCP {
+                    mode = TUSessionMode.UDPNormal
+                }
+            }
+        }
+    }
     
     // 目标IP
     var targetIP:   String?
-    
     // 目标端口
     var targetPort: String?
     
+    // 是否随机本地端口
+    var isRandomLocalPort   = false
     // 本地端口
     var localPort:  String?
     
-    // 是否随机本地端口
-    var isRandomLocalPort   = false
-    
     // 发送每个包的大小
     var sendPackgetSize     = 1024 * 2
-    
     // 数据接收大小
     var receiveBufferSize   = 1024 * 1024
-    
     // 数据队列发送延时(ms)
     var sendQueueDelay      = 20
     
-    // 连接数
-    var linkCount           = 1
-    
-    // 多连接选项
-    var multiLinkOptions    = TUSessionMultiLinkOptions()
+    // 是否多连接
+    var isMultiLink         = false
+    // 多连接,连接数
+    var linkCount           = 5
+    // 多连接选项: 目标IP递增
+    var multiLinkOptionsTargetIPIncrement    = false
+    // 多连接选项: 目标端口递增
+    var multiLinkOptionsTargetPortIncrement    = false
+    // 多连接选项: 本地端口递增
+    var multiLinkOptionsLocalPortIncrement    = false
+
 }

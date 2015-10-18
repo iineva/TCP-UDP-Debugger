@@ -11,11 +11,16 @@
 		B0B4F1721BD2981D0088D06D /* TUSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B4F1711BD2981D0088D06D /* TUSessionViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		B0B4F1741BD29AFB0088D06D /* TUAddSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B4F1731BD29AFB0088D06D /* TUAddSessionViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		B0B4F1761BD2AA400088D06D /* TUSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B4F1751BD2AA400088D06D /* TUSession.swift */; settings = {ASSET_TAGS = (); }; };
+		B0B4F1781BD3AB360088D06D /* TUAddSessionInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B4F1771BD3AB360088D06D /* TUAddSessionInputTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		B0B4F17A1BD3BFC50088D06D /* TUAddSessionSegmentedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B4F1791BD3BFC50088D06D /* TUAddSessionSegmentedCell.swift */; settings = {ASSET_TAGS = (); }; };
+		B0B4F17C1BD3BFED0088D06D /* TUAddSessionIPAndPortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B4F17B1BD3BFED0088D06D /* TUAddSessionIPAndPortCell.swift */; settings = {ASSET_TAGS = (); }; };
+		B0B4F17E1BD3C0230088D06D /* TUAddSessionSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B4F17D1BD3C0230088D06D /* TUAddSessionSwitchCell.swift */; settings = {ASSET_TAGS = (); }; };
 		B0D944AD1BD2889E00A581A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D944AC1BD2889E00A581A2 /* AppDelegate.swift */; };
 		B0D944AF1BD2889E00A581A2 /* TUViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D944AE1BD2889E00A581A2 /* TUViewController.swift */; };
 		B0D944B21BD2889E00A581A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0D944B01BD2889E00A581A2 /* Main.storyboard */; };
 		B0D944B41BD2889E00A581A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0D944B31BD2889E00A581A2 /* Assets.xcassets */; };
 		B0D944B71BD2889E00A581A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0D944B51BD2889E00A581A2 /* LaunchScreen.storyboard */; };
+		B0FB27A71BD3F85300E43133 /* TUAddSessionSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27A61BD3F85300E43133 /* TUAddSessionSelectorCell.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +30,10 @@
 		B0B4F1711BD2981D0088D06D /* TUSessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUSessionViewController.swift; sourceTree = "<group>"; };
 		B0B4F1731BD29AFB0088D06D /* TUAddSessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUAddSessionViewController.swift; sourceTree = "<group>"; };
 		B0B4F1751BD2AA400088D06D /* TUSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUSession.swift; sourceTree = "<group>"; };
+		B0B4F1771BD3AB360088D06D /* TUAddSessionInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUAddSessionInputTableViewCell.swift; sourceTree = "<group>"; };
+		B0B4F1791BD3BFC50088D06D /* TUAddSessionSegmentedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUAddSessionSegmentedCell.swift; sourceTree = "<group>"; };
+		B0B4F17B1BD3BFED0088D06D /* TUAddSessionIPAndPortCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUAddSessionIPAndPortCell.swift; sourceTree = "<group>"; };
+		B0B4F17D1BD3C0230088D06D /* TUAddSessionSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUAddSessionSwitchCell.swift; sourceTree = "<group>"; };
 		B0D944A91BD2889E00A581A2 /* TCP-UDP-Debuger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TCP-UDP-Debuger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0D944AC1BD2889E00A581A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0D944AE1BD2889E00A581A2 /* TUViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TUViewController.swift; sourceTree = "<group>"; };
@@ -32,6 +41,7 @@
 		B0D944B31BD2889E00A581A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0D944B61BD2889E00A581A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0D944B81BD2889E00A581A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0FB27A61BD3F85300E43133 /* TUAddSessionSelectorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUAddSessionSelectorCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +82,11 @@
 				B0B4F1751BD2AA400088D06D /* TUSession.swift */,
 				B0B4F1731BD29AFB0088D06D /* TUAddSessionViewController.swift */,
 				B0B4F1711BD2981D0088D06D /* TUSessionViewController.swift */,
+				B0B4F1771BD3AB360088D06D /* TUAddSessionInputTableViewCell.swift */,
+				B0B4F1791BD3BFC50088D06D /* TUAddSessionSegmentedCell.swift */,
+				B0B4F17B1BD3BFED0088D06D /* TUAddSessionIPAndPortCell.swift */,
+				B0B4F17D1BD3C0230088D06D /* TUAddSessionSwitchCell.swift */,
+				B0FB27A61BD3F85300E43133 /* TUAddSessionSelectorCell.swift */,
 				B0D944B01BD2889E00A581A2 /* Main.storyboard */,
 				B0D944B31BD2889E00A581A2 /* Assets.xcassets */,
 				B0D944B51BD2889E00A581A2 /* LaunchScreen.storyboard */,
@@ -218,11 +233,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0FB27A71BD3F85300E43133 /* TUAddSessionSelectorCell.swift in Sources */,
 				B0B4F1721BD2981D0088D06D /* TUSessionViewController.swift in Sources */,
+				B0B4F17C1BD3BFED0088D06D /* TUAddSessionIPAndPortCell.swift in Sources */,
 				B0B4F1741BD29AFB0088D06D /* TUAddSessionViewController.swift in Sources */,
 				B0B4F1761BD2AA400088D06D /* TUSession.swift in Sources */,
 				B0D944AF1BD2889E00A581A2 /* TUViewController.swift in Sources */,
+				B0B4F17E1BD3C0230088D06D /* TUAddSessionSwitchCell.swift in Sources */,
+				B0B4F1781BD3AB360088D06D /* TUAddSessionInputTableViewCell.swift in Sources */,
 				B0D944AD1BD2889E00A581A2 /* AppDelegate.swift in Sources */,
+				B0B4F17A1BD3BFC50088D06D /* TUAddSessionSegmentedCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

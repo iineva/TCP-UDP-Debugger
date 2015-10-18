@@ -199,20 +199,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="77" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HlL-vZ-1hi">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="HlL-vZ-1hi">
                                 <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="mode" rowHeight="70" id="LZa-CI-Kbn">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="70"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="mode" rowHeight="44" id="LZa-CI-Kbn" customClass="TUAddSessionSegmentedCell" customModule="TCP_UDP_Debuger" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="49.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LZa-CI-Kbn" id="WZC-3Q-sEA">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VTx-Cg-EwU">
-                                                    <rect key="frame" x="12" y="29.5" width="296" height="29"/>
+                                                    <rect key="frame" x="12" y="8" width="296" height="29"/>
                                                     <animations/>
                                                     <segments>
                                                         <segment title="普通"/>
@@ -220,133 +220,203 @@
                                                         <segment title="广播"/>
                                                     </segments>
                                                 </segmentedControl>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="模式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGT-dT-0PT">
-                                                    <rect key="frame" x="12" y="8" width="32" height="19.5"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstItem="VTx-Cg-EwU" firstAttribute="leading" secondItem="WZC-3Q-sEA" secondAttribute="leading" constant="12" id="Jpw-c3-IRQ"/>
+                                                <constraint firstItem="VTx-Cg-EwU" firstAttribute="centerY" secondItem="WZC-3Q-sEA" secondAttribute="centerY" id="Lza-US-A5h"/>
                                                 <constraint firstAttribute="trailing" secondItem="VTx-Cg-EwU" secondAttribute="trailing" constant="12" id="PRp-gJ-tB3"/>
-                                                <constraint firstItem="DGT-dT-0PT" firstAttribute="top" secondItem="WZC-3Q-sEA" secondAttribute="top" constant="8" id="VjP-po-BdE"/>
-                                                <constraint firstItem="VTx-Cg-EwU" firstAttribute="top" secondItem="DGT-dT-0PT" secondAttribute="bottom" constant="2" id="WQ8-nq-yMY"/>
-                                                <constraint firstItem="DGT-dT-0PT" firstAttribute="leading" secondItem="WZC-3Q-sEA" secondAttribute="leading" constant="12" id="yKo-ho-Zq2"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <connections>
+                                            <outlet property="segmentedV" destination="VTx-Cg-EwU" id="fu0-u0-7ov"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="target" rowHeight="70" id="cLZ-kx-wId">
-                                        <rect key="frame" x="0.0" y="98" width="320" height="70"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ip+port" rowHeight="44" id="cLZ-kx-wId" customClass="TUAddSessionIPAndPortCell" customModule="TCP_UDP_Debuger" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="93.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cLZ-kx-wId" id="AVL-7p-78p">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目标IP和端口" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KN2-XR-k28">
-                                                    <rect key="frame" x="12" y="8" width="100" height="20.5"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="目标端口" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="meI-40-sak">
-                                                    <rect key="frame" x="237" y="31" width="71" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入目标IP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G1f-cK-NvR">
+                                                    <rect key="frame" x="12" y="0.0" width="212.5" height="43.5"/>
                                                     <animations/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9YA-YE-00S">
-                                                    <rect key="frame" x="228.5" y="37" width="4.5" height="17"/>
+                                                    <rect key="frame" x="228" y="13.5" width="4.5" height="17"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入目标IP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G1f-cK-NvR">
-                                                    <rect key="frame" x="12" y="31" width="212.5" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="目标端口" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="meI-40-sak">
+                                                    <rect key="frame" x="237" y="0.0" width="71" height="43.5"/>
                                                     <animations/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
                                             <animations/>
                                             <constraints>
+                                                <constraint firstItem="meI-40-sak" firstAttribute="top" secondItem="AVL-7p-78p" secondAttribute="top" id="1so-y7-Eji"/>
                                                 <constraint firstItem="9YA-YE-00S" firstAttribute="leading" secondItem="G1f-cK-NvR" secondAttribute="trailing" constant="4" id="4q3-Ww-KXv"/>
                                                 <constraint firstItem="meI-40-sak" firstAttribute="leading" secondItem="9YA-YE-00S" secondAttribute="trailing" constant="4" id="58z-sN-7Gd"/>
                                                 <constraint firstItem="meI-40-sak" firstAttribute="baseline" secondItem="G1f-cK-NvR" secondAttribute="baseline" id="5CV-ke-faB"/>
                                                 <constraint firstAttribute="trailing" secondItem="meI-40-sak" secondAttribute="trailing" constant="12" id="5Kh-jW-3g4"/>
                                                 <constraint firstItem="meI-40-sak" firstAttribute="width" secondItem="G1f-cK-NvR" secondAttribute="width" multiplier="1:3" id="9ZA-BO-OIt"/>
-                                                <constraint firstItem="G1f-cK-NvR" firstAttribute="top" secondItem="KN2-XR-k28" secondAttribute="bottom" constant="2" id="Je9-Zc-2L7"/>
+                                                <constraint firstAttribute="bottom" secondItem="meI-40-sak" secondAttribute="bottom" id="TvN-1h-FjO"/>
+                                                <constraint firstAttribute="bottom" secondItem="G1f-cK-NvR" secondAttribute="bottom" id="daP-mv-Ata"/>
                                                 <constraint firstItem="9YA-YE-00S" firstAttribute="baseline" secondItem="G1f-cK-NvR" secondAttribute="baseline" id="gjh-os-744"/>
                                                 <constraint firstItem="G1f-cK-NvR" firstAttribute="leading" secondItem="AVL-7p-78p" secondAttribute="leading" constant="12" id="gxT-dp-y8G"/>
-                                                <constraint firstItem="KN2-XR-k28" firstAttribute="leading" secondItem="AVL-7p-78p" secondAttribute="leading" constant="12" id="hOm-Iy-rSy"/>
-                                                <constraint firstItem="KN2-XR-k28" firstAttribute="top" secondItem="AVL-7p-78p" secondAttribute="top" constant="8" id="yK6-xJ-lpX"/>
+                                                <constraint firstItem="9YA-YE-00S" firstAttribute="centerY" secondItem="AVL-7p-78p" secondAttribute="centerY" id="hXs-tg-NgU"/>
+                                                <constraint firstItem="G1f-cK-NvR" firstAttribute="top" secondItem="AVL-7p-78p" secondAttribute="top" id="myH-DM-008"/>
+                                                <constraint firstItem="G1f-cK-NvR" firstAttribute="centerY" secondItem="AVL-7p-78p" secondAttribute="centerY" id="xV2-9z-hpQ"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="xV2-9z-hpQ"/>
+                                                    <exclude reference="gjh-os-744"/>
+                                                    <exclude reference="5CV-ke-faB"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <connections>
+                                            <outlet property="IPLab" destination="G1f-cK-NvR" id="W4m-tT-yLb"/>
+                                            <outlet property="protLab" destination="meI-40-sak" id="eeg-kX-XSn"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="local" rowHeight="70" id="jp5-eO-pNK">
-                                        <rect key="frame" x="0.0" y="168" width="320" height="70"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="switch" rowHeight="44" id="jp5-eO-pNK" customClass="TUAddSessionSwitchCell" customModule="TCP_UDP_Debuger" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="137.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jp5-eO-pNK" id="Inb-cf-c1a">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="随机" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdJ-Ak-xNL">
-                                                    <rect key="frame" x="227" y="36" width="28" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="随机本地端口" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdJ-Ak-xNL">
+                                                    <rect key="frame" x="12" y="12" width="96" height="19.5"/>
                                                     <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入本机端口" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Pn-up-5ZZ">
-                                                    <rect key="frame" x="12" y="30" width="211" height="30"/>
-                                                    <animations/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本机端口" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NpB-Tu-Azs">
-                                                    <rect key="frame" x="12" y="8" width="68" height="20.5"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fFL-sZ-FTx">
-                                                    <rect key="frame" x="259" y="29" width="51" height="31"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fFL-sZ-FTx">
+                                                    <rect key="frame" x="259" y="6.5" width="51" height="31"/>
                                                     <animations/>
                                                 </switch>
                                             </subviews>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstItem="EdJ-Ak-xNL" firstAttribute="centerY" secondItem="3Pn-up-5ZZ" secondAttribute="centerY" id="28j-sU-PXD"/>
-                                                <constraint firstItem="fFL-sZ-FTx" firstAttribute="leading" secondItem="EdJ-Ak-xNL" secondAttribute="trailing" constant="4" id="2Xw-ka-ukS"/>
-                                                <constraint firstItem="fFL-sZ-FTx" firstAttribute="centerY" secondItem="3Pn-up-5ZZ" secondAttribute="centerY" id="3OJ-VK-5E1"/>
-                                                <constraint firstItem="EdJ-Ak-xNL" firstAttribute="baseline" secondItem="3Pn-up-5ZZ" secondAttribute="baseline" id="E8f-iI-SPQ"/>
-                                                <constraint firstItem="fFL-sZ-FTx" firstAttribute="baseline" secondItem="3Pn-up-5ZZ" secondAttribute="baseline" id="GoQ-Kz-K8i"/>
+                                                <constraint firstItem="fFL-sZ-FTx" firstAttribute="centerY" secondItem="Inb-cf-c1a" secondAttribute="centerY" id="0Q8-iQ-Mgs"/>
+                                                <constraint firstItem="fFL-sZ-FTx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EdJ-Ak-xNL" secondAttribute="trailing" constant="4" id="2Xw-ka-ukS"/>
+                                                <constraint firstItem="EdJ-Ak-xNL" firstAttribute="leading" secondItem="Inb-cf-c1a" secondAttribute="leading" constant="12" id="3nF-wa-QJt"/>
+                                                <constraint firstItem="EdJ-Ak-xNL" firstAttribute="centerY" secondItem="Inb-cf-c1a" secondAttribute="centerY" id="BuC-F0-YdO"/>
                                                 <constraint firstAttribute="trailing" secondItem="fFL-sZ-FTx" secondAttribute="trailing" constant="12" id="LO2-3y-OMg"/>
-                                                <constraint firstItem="3Pn-up-5ZZ" firstAttribute="leading" secondItem="Inb-cf-c1a" secondAttribute="leading" constant="12" id="NVV-eM-knS"/>
-                                                <constraint firstItem="3Pn-up-5ZZ" firstAttribute="top" secondItem="NpB-Tu-Azs" secondAttribute="bottom" constant="2" id="cNz-cY-SDi"/>
-                                                <constraint firstItem="NpB-Tu-Azs" firstAttribute="leading" secondItem="Inb-cf-c1a" secondAttribute="leading" constant="12" id="hev-sZ-ary"/>
-                                                <constraint firstItem="EdJ-Ak-xNL" firstAttribute="leading" secondItem="3Pn-up-5ZZ" secondAttribute="trailing" constant="4" id="inz-NW-su7"/>
-                                                <constraint firstItem="NpB-Tu-Azs" firstAttribute="top" secondItem="Inb-cf-c1a" secondAttribute="top" constant="8" id="s0C-Tt-UHf"/>
-                                                <constraint firstItem="fFL-sZ-FTx" firstAttribute="baseline" secondItem="EdJ-Ak-xNL" secondAttribute="baseline" id="w4l-bV-4J8"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="E8f-iI-SPQ"/>
-                                                    <exclude reference="GoQ-Kz-K8i"/>
-                                                    <exclude reference="w4l-bV-4J8"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <connections>
+                                            <outlet property="switchV" destination="fFL-sZ-FTx" id="5Iv-im-pl0"/>
+                                            <outlet property="titleLab" destination="EdJ-Ak-xNL" id="3Sg-8M-fhI"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="input" rowHeight="44" id="1gY-HQ-bgU" customClass="TUAddSessionInputTableViewCell" customModule="TCP_UDP_Debuger" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="181.5" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1gY-HQ-bgU" id="A2e-uj-fQE">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入本地端口" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sYt-cc-76I">
+                                                    <rect key="frame" x="12" y="0.0" width="296" height="43.5"/>
+                                                    <animations/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="sYt-cc-76I" secondAttribute="bottom" id="GGu-1S-B8L"/>
+                                                <constraint firstAttribute="trailing" secondItem="sYt-cc-76I" secondAttribute="trailing" constant="12" id="eIB-oV-2en"/>
+                                                <constraint firstItem="sYt-cc-76I" firstAttribute="leading" secondItem="A2e-uj-fQE" secondAttribute="leading" constant="12" id="n2c-db-4VW"/>
+                                                <constraint firstItem="sYt-cc-76I" firstAttribute="top" secondItem="A2e-uj-fQE" secondAttribute="top" id="q6I-mV-gRv"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <connections>
+                                            <outlet property="inputV" destination="sYt-cc-76I" id="ijX-1k-mlD"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="selector" id="hGz-Y0-tyt" customClass="TUAddSessionSelectorCell" customModule="TCP_UDP_Debuger" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="225.5" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hGz-Y0-tyt" id="YMY-TL-Mrm">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9F9-cv-WOa">
+                                                    <rect key="frame" x="12" y="0.0" width="84" height="43.5"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" title="目标IP递增" image="box_N">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <state key="selected" image="box_H"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isIconSquare" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z6q-Md-YfA">
+                                                    <rect key="frame" x="219" y="0.0" width="99" height="43.5"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" title="本地端口递增" image="box_N">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <state key="selected" image="box_H"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isIconSquare" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Xx-Sk-hun">
+                                                    <rect key="frame" x="108" y="0.0" width="99" height="43.5"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" title="目标端口递增" image="box_N">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <state key="selected" image="box_H"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isIconSquare" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="9F9-cv-WOa" firstAttribute="leading" secondItem="YMY-TL-Mrm" secondAttribute="leading" constant="12" id="5P1-5g-vQo"/>
+                                                <constraint firstItem="z6q-Md-YfA" firstAttribute="leading" secondItem="6Xx-Sk-hun" secondAttribute="trailing" constant="12" id="KTc-ue-UY8"/>
+                                                <constraint firstAttribute="bottom" secondItem="6Xx-Sk-hun" secondAttribute="bottom" id="OID-Lu-nmb"/>
+                                                <constraint firstAttribute="bottom" secondItem="z6q-Md-YfA" secondAttribute="bottom" id="VVy-FK-aiO"/>
+                                                <constraint firstItem="9F9-cv-WOa" firstAttribute="top" secondItem="YMY-TL-Mrm" secondAttribute="top" id="mOb-Bg-CNl"/>
+                                                <constraint firstItem="6Xx-Sk-hun" firstAttribute="top" secondItem="YMY-TL-Mrm" secondAttribute="top" id="nZ4-lv-1EB"/>
+                                                <constraint firstItem="6Xx-Sk-hun" firstAttribute="leading" secondItem="9F9-cv-WOa" secondAttribute="trailing" constant="12" id="pAc-Lu-f3a"/>
+                                                <constraint firstItem="z6q-Md-YfA" firstAttribute="top" secondItem="YMY-TL-Mrm" secondAttribute="top" id="ruW-bp-qYe"/>
+                                                <constraint firstAttribute="bottom" secondItem="9F9-cv-WOa" secondAttribute="bottom" id="yTL-pM-wWV"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <connections>
+                                            <outlet property="button1" destination="9F9-cv-WOa" id="1KU-nd-t50"/>
+                                            <outlet property="button2" destination="6Xx-Sk-hun" id="7rT-Fc-asY"/>
+                                            <outlet property="button3" destination="z6q-Md-YfA" id="OBb-Sw-b1u"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -387,6 +457,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="protocolSegmented" destination="Liv-4e-6Lx" id="BHs-kI-eiX"/>
+                        <outlet property="tableView" destination="HlL-vZ-1hi" id="nrW-U1-WWn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="meg-HA-VRy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -394,4 +465,8 @@
             <point key="canvasLocation" x="788" y="614"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="box_H" width="15" height="15"/>
+        <image name="box_N" width="15" height="15"/>
+    </resources>
 </document>

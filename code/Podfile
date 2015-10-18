@@ -6,4 +6,6 @@ pod 'CocoaAsyncSocket' # Socket封装
 
 pod 'AFMInfoBanner' # 绿色成功红色警告失败，在导航栏下方弹出
 
+pod 'PINCache'      # 缓存库
+
 pod 'ReactiveCocoa', '4.0.2-alpha-1' # 响应式编程框架

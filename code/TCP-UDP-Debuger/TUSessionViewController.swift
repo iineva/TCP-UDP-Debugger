@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// 会话控制器
 class TUSessionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
