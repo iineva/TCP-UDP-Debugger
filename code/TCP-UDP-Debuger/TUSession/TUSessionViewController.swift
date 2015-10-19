@@ -11,6 +11,8 @@ import UIKit
 /// 会话控制器
 class TUSessionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    var session : TUSession?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

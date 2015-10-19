@@ -18,8 +18,10 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func onSaveButtonTouch(sender: AnyObject) {
         // TODO 参数校验
-//        TUCache.sessionItems.append(self.session)
+        TUCache.shared.sessionItems.insert(self.session, atIndex: 0)
+        self.navigationController?.popViewControllerAnimated(true)
     }
+    
     var titleItems : [String] {
         get {
             if self.session.mode == .TCPServer {
@@ -40,7 +42,11 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
         protocolSegmented.selectedSegmentIndex = TUSessionProtocol.TCP.rawValue
         protocolSegmented.rac_signalForControlEvents(UIControlEvents.ValueChanged).subscribeNext {
             [unowned self] (s) -> Void in
-            self.session.sessionProtocol = TUSessionProtocol(rawValue: s.selectedSegmentIndex) ?? TUSessionProtocol.TCP
+            if s.selectedSegmentIndex == 0 {
+                self.session.sessionProtocol = .TCP
+            } else {
+                self.session.sessionProtocol = .UDP
+            }
             self.tableView.reloadData()
         }
     }
@@ -170,14 +176,18 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
                 IPPortCell.protLab.text = self.session.targetPort == nil ? "" : String(self.session.targetPort!)
                 
                 IPPortCell.IPLab.rac_textSignal().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
-                    [unowned self, weak IPPortCell](x) -> Void in
+                    [unowned self](x) -> Void in
                     // TODO IP格式检验
-                    self.session.targetIP = IPPortCell?.IPLab.text
+                    if let v = x as? String {
+                        self.session.targetIP = v
+                    }
                 })
                 IPPortCell.protLab.rac_textSignal().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
-                    [unowned self, weak IPPortCell](x) -> Void in
+                    [unowned self](x) -> Void in
                     // TODO 端口格式检验
-                    self.session.targetPort = UInt16(IPPortCell?.IPLab.text ?? "")
+                    if let v = x as? String {
+                        self.session.targetPort = UInt16(v)
+                    }
                 })
             }
             return cell
