@@ -47,7 +47,7 @@ class TUSession {
     // 连接模式
     var mode = TUSessionMode.TCPClient {
         didSet {
-            switch oldValue {
+            switch self.mode {
             case .TCPClient, .TCPServer:
                 if sessionProtocol == .UDP {
                     mode = TUSessionMode.TCPClient
@@ -59,16 +59,35 @@ class TUSession {
             }
         }
     }
-    
+        
     // 目标IP
-    var targetIP:   String?
+    private var targetIPStore: String?
+    var targetIP: String? {
+        get {
+            if self.mode == .UDPBroadcast {
+                return "255.255.255.255"
+            } else {
+                return targetIPStore
+            }
+        }
+        set {
+            if self.mode != .UDPBroadcast {
+                targetIPStore = newValue
+            }
+        }
+    }
     // 目标端口
-    var targetPort: String?
+    var targetPort: UInt16?
     
     // 是否随机本地端口
     var isRandomLocalPort   = false
     // 本地端口
-    var localPort:  String?
+    var localPort:  UInt16?
+    
+    // TCPServer模式，自动断开和客户端的连接时间(s)，0表示不断开
+    var autoDisconnectLinkDelay = 30
+    // TCPServer模式，是否自动断开和客户端的连接
+    var isAutoDisconnectLinkDelay = false
     
     // 发送每个包的大小
     var sendPackgetSize     = 1024 * 2
@@ -87,5 +106,4 @@ class TUSession {
     var multiLinkOptionsTargetPortIncrement    = false
     // 多连接选项: 本地端口递增
     var multiLinkOptionsLocalPortIncrement    = false
-
 }

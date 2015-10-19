@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import DLRadioButton
 
 /// 创建多个链接选项
 class TUAddSessionSelectorCell: UITableViewCell {
-    @IBOutlet weak var button1: DLRadioButton!
-    @IBOutlet weak var button2: DLRadioButton!
-    @IBOutlet weak var button3: DLRadioButton!
+    @IBOutlet weak var button1: UIButton!
+    @IBOutlet weak var button2: UIButton!
+    @IBOutlet weak var button3: UIButton!
 }

@@ -20,6 +20,7 @@
 		B0D944B21BD2889E00A581A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0D944B01BD2889E00A581A2 /* Main.storyboard */; };
 		B0D944B41BD2889E00A581A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0D944B31BD2889E00A581A2 /* Assets.xcassets */; };
 		B0D944B71BD2889E00A581A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0D944B51BD2889E00A581A2 /* LaunchScreen.storyboard */; };
+		B0DAC2591BD501530095E125 /* TUCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DAC2581BD501530095E125 /* TUCache.swift */; settings = {ASSET_TAGS = (); }; };
 		B0FB27A71BD3F85300E43133 /* TUAddSessionSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27A61BD3F85300E43133 /* TUAddSessionSelectorCell.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		B0D944B31BD2889E00A581A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0D944B61BD2889E00A581A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0D944B81BD2889E00A581A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0DAC2581BD501530095E125 /* TUCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUCache.swift; sourceTree = "<group>"; };
 		B0FB27A61BD3F85300E43133 /* TUAddSessionSelectorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUAddSessionSelectorCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,6 +82,7 @@
 				B0D944AC1BD2889E00A581A2 /* AppDelegate.swift */,
 				B0D944AE1BD2889E00A581A2 /* TUViewController.swift */,
 				B0B4F1751BD2AA400088D06D /* TUSession.swift */,
+				B0DAC2581BD501530095E125 /* TUCache.swift */,
 				B0B4F1731BD29AFB0088D06D /* TUAddSessionViewController.swift */,
 				B0B4F1711BD2981D0088D06D /* TUSessionViewController.swift */,
 				B0B4F1771BD3AB360088D06D /* TUAddSessionInputTableViewCell.swift */,
@@ -243,6 +246,7 @@
 				B0B4F1781BD3AB360088D06D /* TUAddSessionInputTableViewCell.swift in Sources */,
 				B0D944AD1BD2889E00A581A2 /* AppDelegate.swift in Sources */,
 				B0B4F17A1BD3BFC50088D06D /* TUAddSessionSegmentedCell.swift in Sources */,
+				B0DAC2591BD501530095E125 /* TUCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
