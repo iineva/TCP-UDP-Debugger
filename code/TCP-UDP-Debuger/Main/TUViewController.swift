@@ -37,15 +37,26 @@ class TUViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         super.didReceiveMemoryWarning()
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        // 编辑
+        let editAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "编辑") {
+            [unowned self](_, _) -> Void in
+            if let vc = self.pushViewController("TUAddSessionViewController") as? TUAddSessionViewController {
+                vc.session = TUCache.shared.sessionItems[indexPath.row]
+            }
+        }
+        editAction.backgroundColor = self.navigationController?.navigationBar.tintColor
+        
+        // 删除
+        let delAction = UITableViewRowAction(style: UITableViewRowActionStyle.Destructive, title: "删除") {
+            (_, _) -> Void in
+            TUCache.shared.sessionItems.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+        }
+        return [delAction, editAction]
     }
-    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        return UITableViewCellEditingStyle.Delete
-    }
+    
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        TUCache.shared.sessionItems.removeAtIndex(indexPath.row)
-        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,7 +73,6 @@ class TUViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             vc.session = TUCache.shared.sessionItems[indexPath.row]
         }
     }
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         if let c = cell as? TUViewControllerCell {

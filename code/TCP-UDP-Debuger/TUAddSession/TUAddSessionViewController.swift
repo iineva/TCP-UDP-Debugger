@@ -14,7 +14,7 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var tableView: UITableView!
     
-    let session = TUSession()
+    var session = TUSession()
     
     @IBAction func onSaveButtonTouch(sender: AnyObject) {
         // TODO 参数校验
@@ -39,7 +39,7 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         
         // 初始化协议的选择
-        protocolSegmented.selectedSegmentIndex = TUSessionProtocol.TCP.rawValue
+        protocolSegmented.selectedSegmentIndex = self.session.sessionProtocol.rawValue
         protocolSegmented.rac_signalForControlEvents(UIControlEvents.ValueChanged).subscribeNext {
             [unowned self] (s) -> Void in
             if s.selectedSegmentIndex == 0 {
@@ -173,7 +173,7 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
                     IPPortCell.IPLab.enabled = true
                 }
                 IPPortCell.IPLab.text = self.session.targetIP
-                IPPortCell.protLab.text = self.session.targetPort == nil ? "" : String(self.session.targetPort!)
+                IPPortCell.protLab.text = String(self.session.targetPort)
                 
                 IPPortCell.IPLab.rac_textSignal().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
                     [unowned self](x) -> Void in
@@ -214,7 +214,7 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
                 if let inputCell = cell as? TUAddSessionInputTableViewCell {
                     inputCell.inputV.placeholder = "请输入本地端口"
                     inputCell.inputV.enabled = true
-                    inputCell.inputV.text = self.session.localPort == nil ? "" : String(self.session.localPort!)
+                    inputCell.inputV.text = String(self.session.localPort)
                     inputCell.inputV.rac_textSignal().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
                         [unowned self, weak inputCell](x) -> Void in
                         self.session.localPort = UInt16(inputCell?.inputV.text ?? "")

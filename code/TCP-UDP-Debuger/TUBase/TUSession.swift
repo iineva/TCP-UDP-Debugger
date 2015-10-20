@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import JSONModel
 
 /**
 会话协议
@@ -26,81 +27,7 @@ enum TUSessionMode: Int {
 }
 
 /// 会话信息
-class TUSession: NSObject, NSCoding {
-    
-    // 序列化
-    @objc func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(sessionProtocol as? AnyObject, forKey: "sessionProtocol")
-        aCoder.encodeObject(mode as? AnyObject, forKey: "mode")
-        aCoder.encodeObject(targetIPStore as? AnyObject, forKey: "targetIPStore")
-        aCoder.encodeObject(String(targetPort), forKey: "targetPort")
-        aCoder.encodeObject(String(isRandomLocalPort), forKey: "isRandomLocalPort")
-        aCoder.encodeObject(String(localPort), forKey: "localPort")
-        aCoder.encodeObject(String(autoDisconnectLinkDelay), forKey: "autoDisconnectLinkDelay")
-        aCoder.encodeObject(String(isAutoDisconnectLinkDelay), forKey: "isAutoDisconnectLinkDelay")
-        aCoder.encodeObject(String(sendPackgetSize), forKey: "sendPackgetSize")
-        aCoder.encodeObject(String(receiveBufferSize), forKey: "receiveBufferSize")
-        aCoder.encodeObject(String(sendQueueDelay), forKey: "sendQueueDelay")
-        aCoder.encodeObject(String(isMultiLink), forKey: "isMultiLink")
-        aCoder.encodeObject(String(linkCount), forKey: "linkCount")
-        aCoder.encodeObject(String(multiLinkOptionsTargetIPIncrement), forKey: "multiLinkOptionsTargetIPIncrement")
-        aCoder.encodeObject(String(multiLinkOptionsTargetPortIncrement), forKey: "multiLinkOptionsTargetPortIncrement")
-        aCoder.encodeObject(String(multiLinkOptionsLocalPortIncrement), forKey: "multiLinkOptionsLocalPortIncrement")
-    }
-    // 反序列化
-    @objc required init?(coder aDecoder: NSCoder) {
-        if let v = aDecoder.decodeObjectForKey("sessionProtocol") as? TUSessionProtocol {
-            sessionProtocol =  v
-        }
-        if let v = aDecoder.decodeObjectForKey("mode") as? TUSessionMode {
-            mode =  v
-        }
-        if let v = aDecoder.decodeObjectForKey("targetIPStore") as? String {
-            targetIPStore =  v
-        }
-        if let v = aDecoder.decodeObjectForKey("targetPort") as? String {
-            targetPort =  UInt16(v)
-        }
-        if let v = aDecoder.decodeObjectForKey("isRandomLocalPort") as? String {
-            isRandomLocalPort =  Int(v) > 0
-        }
-        if let v = aDecoder.decodeObjectForKey("localPort") as? String {
-            localPort =  UInt16(v)
-        }
-        if let v = aDecoder.decodeObjectForKey("autoDisconnectLinkDelay") as? String {
-            autoDisconnectLinkDelay =  Int(v)!
-        }
-        if let v = aDecoder.decodeObjectForKey("isAutoDisconnectLinkDelay") as? String {
-            isAutoDisconnectLinkDelay =  Int(v) > 0
-        }
-        if let v = aDecoder.decodeObjectForKey("sendPackgetSize") as? String {
-            sendPackgetSize =  Int(v)!
-        }
-        if let v = aDecoder.decodeObjectForKey("receiveBufferSize") as? String {
-            receiveBufferSize =  Int(v)!
-        }
-        if let v = aDecoder.decodeObjectForKey("sendQueueDelay") as? String {
-            sendQueueDelay =  Int(v)!
-        }
-        if let v = aDecoder.decodeObjectForKey("isMultiLink") as? String {
-            isMultiLink =  Int(v) > 0
-        }
-        if let v = aDecoder.decodeObjectForKey("linkCount") as? String {
-            linkCount =  Int(v)!
-        }
-        if let v = aDecoder.decodeObjectForKey("multiLinkOptionsTargetIPIncrement") as? String {
-            multiLinkOptionsTargetIPIncrement =  Int(v) > 0
-        }
-        if let v = aDecoder.decodeObjectForKey("multiLinkOptionsTargetPortIncrement") as? String {
-            multiLinkOptionsTargetPortIncrement =  Int(v) > 0
-        }
-        if let v = aDecoder.decodeObjectForKey("multiLinkOptionsLocalPortIncrement") as? String {
-            multiLinkOptionsLocalPortIncrement =  Int(v) > 0
-        }
-    }
-    
-    override init() {}
-
+class TUSession: JSONModel {
     
     // 会话协议
     var sessionProtocol = TUSessionProtocol.TCP {
