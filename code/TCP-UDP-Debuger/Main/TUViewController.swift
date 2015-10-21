@@ -43,6 +43,7 @@ class TUViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             [unowned self](_, _) -> Void in
             if let vc = self.pushViewController("TUAddSessionViewController") as? TUAddSessionViewController {
                 vc.session = TUCache.shared.sessionItems[indexPath.row]
+                vc.editMode = true
             }
         }
         editAction.backgroundColor = self.navigationController?.navigationBar.tintColor

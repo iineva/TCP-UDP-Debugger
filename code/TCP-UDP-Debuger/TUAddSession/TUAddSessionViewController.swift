@@ -8,6 +8,7 @@
 
 import UIKit
 import ReactiveCocoa
+import AFMInfoBanner
 
 /// 添加会话控制器
 class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -16,9 +17,15 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
     
     var session = TUSession()
     
+    var editMode = false
+    
     @IBAction func onSaveButtonTouch(sender: AnyObject) {
         // TODO 参数校验
-        TUCache.shared.sessionItems.insert(self.session, atIndex: 0)
+        if editMode {
+            TUCache.shared.sessionItems = TUCache.shared.sessionItems
+        } else {
+            TUCache.shared.sessionItems.insert(self.session, atIndex: 0)
+        }
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -48,7 +55,7 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
                 self.session.sessionProtocol = .UDP
             }
             self.tableView.reloadData()
-        }
+        }        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -114,8 +121,13 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
                 if let inputCell = cell as? TUAddSessionInputTableViewCell {
                     inputCell.inputV.placeholder = "请输入本地端口"
                     inputCell.inputV.enabled = true
-                    inputCell.inputV.text = self.session.localPort == nil ? "" : String(self.session.localPort!)
-                    inputCell.inputV.rac_textSignal().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
+                    
+                    var localPort = ""
+                    if let v = self.session.localPort {
+                        localPort = String(v)
+                    }
+                    inputCell.inputV.text = localPort
+                    inputCell.inputV.rac_newTextChannel().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
                         [unowned self, weak inputCell](x) -> Void in
                         self.session.localPort = UInt16(inputCell?.inputV.text ?? "")
                     })
@@ -145,7 +157,7 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
                         inputCell.inputV.placeholder = "请输入自动断开时间"
                         inputCell.inputV.enabled = true
                         inputCell.inputV.text = String(self.session.autoDisconnectLinkDelay) ?? ""
-                        inputCell.inputV.rac_textSignal().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
+                        inputCell.inputV.rac_newTextChannel().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
                             [unowned self, weak inputCell](x) -> Void in
                             self.session.autoDisconnectLinkDelay = Int(inputCell?.inputV.text ?? "") ?? 30
                         })
@@ -167,22 +179,22 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
             let cell = tableView.dequeueReusableCellWithIdentifier("ip+port", forIndexPath: indexPath)
             if let IPPortCell = cell as? TUAddSessionIPAndPortCell {
                 
-                if self.session.mode == .UDPBroadcast {
-                    IPPortCell.IPLab.enabled = false
-                } else {
-                    IPPortCell.IPLab.enabled = true
-                }
+                IPPortCell.IPLab.enabled = !(self.session.mode == .UDPBroadcast)
                 IPPortCell.IPLab.text = self.session.targetIP
-                IPPortCell.protLab.text = String(self.session.targetPort)
                 
-                IPPortCell.IPLab.rac_textSignal().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
+                var targetPort = ""
+                if let v = self.session.targetPort {
+                    targetPort = String(v)
+                }
+                IPPortCell.protLab.text = targetPort
+                IPPortCell.IPLab.rac_newTextChannel().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
                     [unowned self](x) -> Void in
                     // TODO IP格式检验
                     if let v = x as? String {
                         self.session.targetIP = v
                     }
                 })
-                IPPortCell.protLab.rac_textSignal().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
+                IPPortCell.protLab.rac_newTextChannel().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
                     [unowned self](x) -> Void in
                     // TODO 端口格式检验
                     if let v = x as? String {
@@ -214,8 +226,12 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
                 if let inputCell = cell as? TUAddSessionInputTableViewCell {
                     inputCell.inputV.placeholder = "请输入本地端口"
                     inputCell.inputV.enabled = true
-                    inputCell.inputV.text = String(self.session.localPort)
-                    inputCell.inputV.rac_textSignal().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
+                    var localPort = ""
+                    if let v = self.session.localPort {
+                        localPort = String(v)
+                    }
+                    inputCell.inputV.text = localPort
+                    inputCell.inputV.rac_newTextChannel().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
                         [unowned self, weak inputCell](x) -> Void in
                         self.session.localPort = UInt16(inputCell?.inputV.text ?? "")
                     })
@@ -245,7 +261,7 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
                 if let inputCell = cell as? TUAddSessionInputTableViewCell {
                     inputCell.inputV.placeholder = "请输入创建数量"
                     inputCell.inputV.text = String(self.session.linkCount)
-                    inputCell.inputV.rac_textSignal().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
+                    inputCell.inputV.rac_newTextChannel().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
                         [unowned self, weak inputCell](x) -> Void in
                         self.session.localPort = UInt16(inputCell?.inputV.text ?? "")
                     })
@@ -295,7 +311,7 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
                 inputCell.inputV.placeholder = "请输入每次发送字节大小"
                 inputCell.inputV.enabled = true
                 inputCell.inputV.text = String(self.session.sendPackgetSize)
-                inputCell.inputV.rac_textSignal().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
+                inputCell.inputV.rac_newTextChannel().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
                     [unowned self, weak inputCell](x) -> Void in
                     self.session.sendPackgetSize = Int(inputCell?.inputV.text ?? "") ?? 0
                 })
@@ -307,7 +323,7 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
                 inputCell.inputV.placeholder = "请输入数据接收缓冲大小"
                 inputCell.inputV.enabled = true
                 inputCell.inputV.text = String(self.session.receiveBufferSize)
-                inputCell.inputV.rac_textSignal().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
+                inputCell.inputV.rac_newTextChannel().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
                     [unowned self, weak inputCell](x) -> Void in
                     self.session.receiveBufferSize = Int(inputCell?.inputV.text ?? "") ?? 0
                 })
@@ -319,7 +335,7 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
                 inputCell.inputV.placeholder = "请输入数据包队列发送间隔"
                 inputCell.inputV.enabled = true
                 inputCell.inputV.text = String(self.session.sendQueueDelay)
-                inputCell.inputV.rac_textSignal().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
+                inputCell.inputV.rac_newTextChannel().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
                     [unowned self, weak inputCell](x) -> Void in
                     self.session.sendQueueDelay = Int(inputCell?.inputV.text ?? "") ?? 0
                 })
