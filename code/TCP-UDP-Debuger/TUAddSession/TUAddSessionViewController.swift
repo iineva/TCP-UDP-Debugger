@@ -113,7 +113,7 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
                 if let inputCell = cell as? TUAddSessionInputTableViewCell {
                     inputCell.inputV.placeholder = "(本地IP)"
                     inputCell.inputV.enabled = false
-                    inputCell.inputV.text = "192.168.1.13"
+                    inputCell.inputV.text = UIDevice.localAddress()
                 }
                 return cell
             case 2: // 本地端口
