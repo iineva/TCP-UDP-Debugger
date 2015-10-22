@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().disableInViewControllerClass(TUSessionViewController)
+        IQKeyboardManager.sharedManager().disableToolbarInViewControllerClass(TUSessionViewController)
         return true
     }
 

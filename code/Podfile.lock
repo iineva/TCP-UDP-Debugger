@@ -4,7 +4,7 @@ PODS:
   - CocoaAsyncSocket (7.4.2)
   - CVKHierarchySearcher (0.2.0)
   - IQKeyboardManagerSwift (3.3.2)
-  - JSONModel (1.1.0)
+  - JSONModel (1.1.2)
   - PINCache (2.1)
   - ReactiveCocoa (4.0.2-alpha-1):
     - ReactiveCocoa/UI (= 4.0.2-alpha-1)
@@ -18,6 +18,7 @@ PODS:
     - ReactiveCocoa/Core
     - Result (~> 0.6-beta.1)
   - Result (0.6.0-beta.4)
+  - SnapKit (0.15.0)
 
 DEPENDENCIES:
   - AFMInfoBanner
@@ -26,15 +27,17 @@ DEPENDENCIES:
   - JSONModel
   - PINCache
   - ReactiveCocoa (= 4.0.2-alpha-1)
+  - SnapKit
 
 SPEC CHECKSUMS:
   AFMInfoBanner: 207a0622fdfc6bff3e8d04ac557932f3d6849425
   CocoaAsyncSocket: f5783bdedd232d91b89769bc4b5a1580aed518ad
   CVKHierarchySearcher: 7be8d3bcbcc6f86ff07f785e6c632b5e40da2553
   IQKeyboardManagerSwift: 40a9f6a3a5f60bc311aad5ab3265b9de5ecb9367
-  JSONModel: ec77e9865236a7a09d9cf7668df6b4b328d9ec1d
+  JSONModel: 216584d0311b053ff714f1d6cb700dbf890847bc
   PINCache: 0581b0a7578fc0bbc6c7a8b70b0615388bea064c
   ReactiveCocoa: 652cf90e5de65708e7e2111f77405756da21aabe
   Result: f7927152cbaec0c043abb06ba0bc432678818418
+  SnapKit: 4962eed2ee18e48cbd2b2292fffc57efe7235f87
 
-COCOAPODS: 0.39.0
+COCOAPODS: 0.38.2

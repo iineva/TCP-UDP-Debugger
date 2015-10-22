@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		477A307ACEEDC2C0BC15F7AF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FE4CD691446F759D41BBD2B /* Pods.framework */; };
+		477A307ACEEDC2C0BC15F7AF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FE4CD691446F759D41BBD2B /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B01892A71BD7EC7500D2790B /* TUSessionLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01892A61BD7EC7500D2790B /* TUSessionLabelCell.swift */; settings = {ASSET_TAGS = (); }; };
 		B01892A91BD7EDE000D2790B /* TUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01892A81BD7EDE000D2790B /* TUView.swift */; settings = {ASSET_TAGS = (); }; };
+		B067FD251BD8D2EE00F3DC3E /* TUInputToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = B067FD241BD8D2EE00F3DC3E /* TUInputToolbar.xib */; settings = {ASSET_TAGS = (); }; };
+		B067FD271BD8D45E00F3DC3E /* TUInputToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067FD261BD8D45E00F3DC3E /* TUInputToolbar.swift */; settings = {ASSET_TAGS = (); }; };
+		B067FD291BD8FDA400F3DC3E /* TUSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067FD281BD8FDA400F3DC3E /* TUSessionManager.swift */; settings = {ASSET_TAGS = (); }; };
 		B0FB27B91BD5410700E43133 /* TUAddSessionInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27AB1BD5410700E43133 /* TUAddSessionInputTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		B0FB27BA1BD5410700E43133 /* TUAddSessionIPAndPortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27AC1BD5410700E43133 /* TUAddSessionIPAndPortCell.swift */; settings = {ASSET_TAGS = (); }; };
 		B0FB27BB1BD5410700E43133 /* TUAddSessionSegmentedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27AD1BD5410700E43133 /* TUAddSessionSegmentedCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -33,6 +36,9 @@
 		7FE4CD691446F759D41BBD2B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B01892A61BD7EC7500D2790B /* TUSessionLabelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUSessionLabelCell.swift; sourceTree = "<group>"; };
 		B01892A81BD7EDE000D2790B /* TUView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUView.swift; sourceTree = "<group>"; };
+		B067FD241BD8D2EE00F3DC3E /* TUInputToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TUInputToolbar.xib; sourceTree = "<group>"; };
+		B067FD261BD8D45E00F3DC3E /* TUInputToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUInputToolbar.swift; sourceTree = "<group>"; };
+		B067FD281BD8FDA400F3DC3E /* TUSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUSessionManager.swift; sourceTree = "<group>"; };
 		B0D944A91BD2889E00A581A2 /* TCP-UDP-Debuger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TCP-UDP-Debuger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0FB27AB1BD5410700E43133 /* TUAddSessionInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUAddSessionInputTableViewCell.swift; sourceTree = "<group>"; };
 		B0FB27AC1BD5410700E43133 /* TUAddSessionIPAndPortCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUAddSessionIPAndPortCell.swift; sourceTree = "<group>"; };
@@ -112,6 +118,8 @@
 				B0FB27B21BD5410700E43133 /* TUCache.swift */,
 				B0FB27B31BD5410700E43133 /* TUSession.swift */,
 				B01892A81BD7EDE000D2790B /* TUView.swift */,
+				B067FD241BD8D2EE00F3DC3E /* TUInputToolbar.xib */,
+				B067FD261BD8D45E00F3DC3E /* TUInputToolbar.swift */,
 			);
 			path = TUBase;
 			sourceTree = "<group>";
@@ -120,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				B0FB27B81BD5410700E43133 /* TUSessionViewController.swift */,
+				B067FD281BD8FDA400F3DC3E /* TUSessionManager.swift */,
 				B01892A61BD7EC7500D2790B /* TUSessionLabelCell.swift */,
 			);
 			path = TUSession;
@@ -219,6 +228,7 @@
 				B0FB27CE1BD5415B00E43133 /* Assets.xcassets in Resources */,
 				B0FB27D01BD5415B00E43133 /* Main.storyboard in Resources */,
 				B0FB27CF1BD5415B00E43133 /* LaunchScreen.storyboard in Resources */,
+				B067FD251BD8D2EE00F3DC3E /* TUInputToolbar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +296,8 @@
 				B0FB27B91BD5410700E43133 /* TUAddSessionInputTableViewCell.swift in Sources */,
 				B01892A71BD7EC7500D2790B /* TUSessionLabelCell.swift in Sources */,
 				B0FB27BA1BD5410700E43133 /* TUAddSessionIPAndPortCell.swift in Sources */,
+				B067FD291BD8FDA400F3DC3E /* TUSessionManager.swift in Sources */,
+				B067FD271BD8D45E00F3DC3E /* TUInputToolbar.swift in Sources */,
 				B0FB27C31BD5410700E43133 /* TUSessionViewController.swift in Sources */,
 				B0FB27BF1BD5410700E43133 /* TUCache.swift in Sources */,
 				B0FB27D41BD541A400E43133 /* TUViewControllerCell.swift in Sources */,
@@ -352,7 +364,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -391,7 +403,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -404,6 +416,7 @@
 			baseConfigurationReference = 49833F39D35CBB89201323C8 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = "TCP-UDP-Debuger/Main/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -417,6 +430,7 @@
 			baseConfigurationReference = 5E969DC3F1E92C4DEC1D98AB /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = "TCP-UDP-Debuger/Main/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

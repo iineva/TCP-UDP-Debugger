@@ -14,22 +14,35 @@ class TUSessionViewController: UIViewController, UITableViewDataSource, UITableV
     
     var session : TUSession?
     
+    @IBOutlet weak var inputField: UITextField!
+    @IBOutlet weak var bottomToolbar: UIToolbar!
+    
     var contentString: String {
         get {
             return "xxxx"
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // TODO for test.
-//                AFMInfoBanner.showAndHideWithText("正在连接...", style: AFMInfoBannerStyle.Info)
         AFMInfoBanner.showWithText("正在连接...", style: AFMInfoBannerStyle.Info, andHideAfter: 2)
+        
+        // 加入输入框
+        TUInputToolbar.showInView(self.view!)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
+    }
+    
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        self.view.endEditing(true)
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

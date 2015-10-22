@@ -36,5 +36,48 @@ extension UIView {
         return self.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height;
 
     }
-
+    
+    var width: CGFloat {
+        get {
+            return self.frame.size.width
+        }
+        set {
+            var rect = self.frame
+            rect.size.width = newValue
+            self.frame = rect
+        }
+    }
+    
+    var height: CGFloat {
+        get {
+            return self.frame.size.height
+        }
+        set {
+            var rect = self.frame
+            rect.size.height = newValue
+            self.frame = rect
+        }
+    }
+    
+    var X: CGFloat {
+        get {
+            return self.frame.origin.x
+        }
+        set {
+            var rect = self.frame
+            rect.origin.x = newValue
+            self.frame = rect
+        }
+    }
+    
+    var Y: CGFloat {
+        get {
+            return self.frame.origin.y
+        }
+        set {
+            var rect = self.frame
+            rect.origin.y = newValue
+            self.frame = rect
+        }
+    }
 }
