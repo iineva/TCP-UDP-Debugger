@@ -10,7 +10,7 @@ import UIKit
 import AFMInfoBanner
 
 /// 会话控制器
-class TUSessionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TUSessionViewController: TUBaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var bottonConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!

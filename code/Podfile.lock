@@ -3,6 +3,7 @@ PODS:
     - CVKHierarchySearcher (~> 0.2)
   - CocoaAsyncSocket (7.4.2)
   - CVKHierarchySearcher (0.2.0)
+  - HanekeSwift (0.10.0)
   - IQKeyboardManagerSwift (3.3.3)
   - JSONModel (1.1.2)
   - PINCache (2.1)
@@ -23,6 +24,7 @@ PODS:
 DEPENDENCIES:
   - AFMInfoBanner
   - CocoaAsyncSocket
+  - HanekeSwift
   - IQKeyboardManagerSwift
   - JSONModel
   - PINCache
@@ -33,6 +35,7 @@ SPEC CHECKSUMS:
   AFMInfoBanner: 207a0622fdfc6bff3e8d04ac557932f3d6849425
   CocoaAsyncSocket: f5783bdedd232d91b89769bc4b5a1580aed518ad
   CVKHierarchySearcher: 7be8d3bcbcc6f86ff07f785e6c632b5e40da2553
+  HanekeSwift: d6f5bdf9dbdbbc09d59623b2c1d533e46463dd4d
   IQKeyboardManagerSwift: e203e78db78697dbc1a213eb71dd1282f66f4156
   JSONModel: 216584d0311b053ff714f1d6cb700dbf890847bc
   PINCache: 0581b0a7578fc0bbc6c7a8b70b0615388bea064c

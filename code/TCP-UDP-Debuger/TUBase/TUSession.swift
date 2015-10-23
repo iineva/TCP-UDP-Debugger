@@ -62,8 +62,8 @@ class TUSession: JSONModel {
     }
         
     // 目标IP
-    private var targetIPStore: String?
-    var targetIP: String? {
+    private var targetIPStore = ""
+    var targetIP: String {
         get {
             if self.mode == .UDPBroadcast {
                 return "255.255.255.255"
@@ -78,12 +78,12 @@ class TUSession: JSONModel {
         }
     }
     // 目标端口
-    var targetPort: UInt16?
+    var targetPort: Int = 80
     
     // 是否随机本地端口
     var isRandomLocalPort   = false
     // 本地端口
-    var localPort:  UInt16?
+    var localPort: Int = 8888
     
     // TCPServer模式，自动断开和客户端的连接时间(s)，0表示不断开
     var autoDisconnectLinkDelay = 30

@@ -39,24 +39,13 @@ class TUSessionConnection: GCDAsyncSocketDelegate, GCDAsyncUdpSocketDelegate {
     
     func connect() {
         
-        if session.targetIP == nil {
-            // TODO 却少目标IP
-            print("却少目标IP")
-            return
-        }
-        if session.targetPort == nil {
-            // TODO 提示设置错误
-            print("却少目标端口")
-            return
-        }
-        
         switch session.sessionProtocol {
         case .TCP:
             if self.tcpSocket == nil {
                 self.tcpSocket = GCDAsyncSocket(delegate: self, delegateQueue: dispatch_get_main_queue())
             }
             if (self.tcpSocket?.isConnected != nil) {
-                try! self.tcpSocket?.connectToHost(session.targetIP, onPort: session.targetPort!)
+                try! self.tcpSocket?.connectToHost(session.targetIP, onPort: UInt16(session.targetPort))
                 self.tcpSocket?.readDataWithTimeout(-1, tag: 0)
             }
         case .UDP:
@@ -64,7 +53,7 @@ class TUSessionConnection: GCDAsyncSocketDelegate, GCDAsyncUdpSocketDelegate {
                 self.udpSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue: dispatch_get_main_queue())
             }
             if (self.udpSocket?.isConnected == nil) {
-                try! self.udpSocket?.connectToHost(session.targetIP, onPort: session.targetPort!)
+                try! self.udpSocket?.connectToHost(session.targetIP, onPort: UInt16(session.targetPort))
             }
         }
     }

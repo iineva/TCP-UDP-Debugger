@@ -49,7 +49,6 @@ class TUInputToolbar: UIView, UITextViewDelegate {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        print(self.height)
         self.heightChangeStore?(height: self.height)
     }
     

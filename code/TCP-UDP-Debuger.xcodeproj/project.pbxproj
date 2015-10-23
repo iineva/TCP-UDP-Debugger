@@ -15,6 +15,8 @@
 		B067FD271BD8D45E00F3DC3E /* TUInputToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067FD261BD8D45E00F3DC3E /* TUInputToolbar.swift */; settings = {ASSET_TAGS = (); }; };
 		B067FD291BD8FDA400F3DC3E /* TUSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067FD281BD8FDA400F3DC3E /* TUSessionManager.swift */; settings = {ASSET_TAGS = (); }; };
 		B07F0DB21BD9E22B00879E86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B07F0DB01BD9E22B00879E86 /* InfoPlist.strings */; settings = {ASSET_TAGS = (); }; };
+		B07F0DB41BDA1D7800879E86 /* SSModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F0DB31BDA1D7800879E86 /* SSModel.swift */; settings = {ASSET_TAGS = (); }; };
+		B07F0DCB1BDA477200879E86 /* TUBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F0DCA1BDA477200879E86 /* TUBaseViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		B0FB27B91BD5410700E43133 /* TUAddSessionInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27AB1BD5410700E43133 /* TUAddSessionInputTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		B0FB27BA1BD5410700E43133 /* TUAddSessionIPAndPortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27AC1BD5410700E43133 /* TUAddSessionIPAndPortCell.swift */; settings = {ASSET_TAGS = (); }; };
 		B0FB27BB1BD5410700E43133 /* TUAddSessionSegmentedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27AD1BD5410700E43133 /* TUAddSessionSegmentedCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -43,6 +45,8 @@
 		B067FD261BD8D45E00F3DC3E /* TUInputToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUInputToolbar.swift; sourceTree = "<group>"; };
 		B067FD281BD8FDA400F3DC3E /* TUSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUSessionManager.swift; sourceTree = "<group>"; };
 		B07F0DB11BD9E22B00879E86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B07F0DB31BDA1D7800879E86 /* SSModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSModel.swift; sourceTree = "<group>"; };
+		B07F0DCA1BDA477200879E86 /* TUBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUBaseViewController.swift; sourceTree = "<group>"; };
 		B0D944A91BD2889E00A581A2 /* TCP-UDP-Debuger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TCP-UDP-Debuger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0FB27AB1BD5410700E43133 /* TUAddSessionInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUAddSessionInputTableViewCell.swift; sourceTree = "<group>"; };
 		B0FB27AC1BD5410700E43133 /* TUAddSessionIPAndPortCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUAddSessionIPAndPortCell.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 				B0189BB71BD938260082E12D /* TUDevice.swift */,
 				B067FD241BD8D2EE00F3DC3E /* TUInputToolbar.xib */,
 				B067FD261BD8D45E00F3DC3E /* TUInputToolbar.swift */,
+				B07F0DCA1BDA477200879E86 /* TUBaseViewController.swift */,
 			);
 			path = TUBase;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 				B0FB27CB1BD5415B00E43133 /* Info.plist */,
 				B0FB27CC1BD5415B00E43133 /* TUViewController.swift */,
 				B0FB27D31BD541A400E43133 /* TUViewControllerCell.swift */,
+				B07F0DB31BDA1D7800879E86 /* SSModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -301,6 +307,7 @@
 				B0FB27BC1BD5410700E43133 /* TUAddSessionSelectorCell.swift in Sources */,
 				B0FB27BB1BD5410700E43133 /* TUAddSessionSegmentedCell.swift in Sources */,
 				B0FB27BD1BD5410700E43133 /* TUAddSessionSwitchCell.swift in Sources */,
+				B07F0DB41BDA1D7800879E86 /* SSModel.swift in Sources */,
 				B0FB27B91BD5410700E43133 /* TUAddSessionInputTableViewCell.swift in Sources */,
 				B01892A71BD7EC7500D2790B /* TUSessionLabelCell.swift in Sources */,
 				B0FB27BA1BD5410700E43133 /* TUAddSessionIPAndPortCell.swift in Sources */,
@@ -309,6 +316,7 @@
 				B0FB27C31BD5410700E43133 /* TUSessionViewController.swift in Sources */,
 				B0FB27BF1BD5410700E43133 /* TUCache.swift in Sources */,
 				B0FB27D41BD541A400E43133 /* TUViewControllerCell.swift in Sources */,
+				B07F0DCB1BDA477200879E86 /* TUBaseViewController.swift in Sources */,
 				B0FB27CD1BD5415B00E43133 /* AppDelegate.swift in Sources */,
 				B0FB27C01BD5410700E43133 /* TUSession.swift in Sources */,
 			);

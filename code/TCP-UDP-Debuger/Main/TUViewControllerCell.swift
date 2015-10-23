@@ -27,21 +27,7 @@ class TUViewControllerCell: UITableViewCell {
             self.titleLab.text = "UDP广播"
         }
         
-        var targetIP = "";
-        var targetPort = "";
-        var localPort = "";
-        
-        if let v = session.targetIP {
-            targetIP = v
-        }
-        if let v = session.targetPort {
-            targetPort = String(v)
-        }
-        if let v = session.localPort {
-            localPort = String(v)
-        }
-        
-        self.targetIPAndPort.text = "\(targetIP):\(targetPort)"
-        self.targetLocalPort.text = session.isRandomLocalPort ? "随机" : localPort
+        self.targetIPAndPort.text = "\(session.targetIP):\(session.targetPort)"
+        self.targetLocalPort.text = session.isRandomLocalPort ? "随机" : String(session.localPort)
     }
 }

@@ -11,7 +11,7 @@ import ReactiveCocoa
 import AFMInfoBanner
 
 /// 添加会话控制器
-class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TUAddSessionViewController: TUBaseViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -121,15 +121,16 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
                 if let inputCell = cell as? TUAddSessionInputTableViewCell {
                     inputCell.inputV.placeholder = "请输入本地端口"
                     inputCell.inputV.enabled = true
-                    
-                    var localPort = ""
-                    if let v = self.session.localPort {
-                        localPort = String(v)
-                    }
-                    inputCell.inputV.text = localPort
+                    inputCell.inputV.text = String(self.session.localPort)
                     inputCell.inputV.rac_newTextChannel().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
-                        [unowned self, weak inputCell](x) -> Void in
-                        self.session.localPort = UInt16(inputCell?.inputV.text ?? "")
+                        [unowned self](x) -> Void in
+                        if let s = x as? String {
+                            if let p = Int(s) {
+                                self.session.localPort = p
+                            } else {
+                                self.session.localPort = 0
+                            }
+                        }
                     })
                 }
                 return cell
@@ -181,12 +182,7 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
                 
                 IPPortCell.IPLab.enabled = !(self.session.mode == .UDPBroadcast)
                 IPPortCell.IPLab.text = self.session.targetIP
-                
-                var targetPort = ""
-                if let v = self.session.targetPort {
-                    targetPort = String(v)
-                }
-                IPPortCell.protLab.text = targetPort
+                IPPortCell.protLab.text = String(self.session.targetPort)
                 IPPortCell.IPLab.rac_newTextChannel().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
                     [unowned self](x) -> Void in
                     // TODO IP格式检验
@@ -197,8 +193,12 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
                 IPPortCell.protLab.rac_newTextChannel().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
                     [unowned self](x) -> Void in
                     // TODO 端口格式检验
-                    if let v = x as? String {
-                        self.session.targetPort = UInt16(v)
+                    if let s = x as? String {
+                        if let p = Int(s) {
+                            self.session.targetPort = p
+                        } else {
+                            self.session.targetPort = 0
+                        }
                     }
                 })
             }
@@ -226,14 +226,16 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
                 if let inputCell = cell as? TUAddSessionInputTableViewCell {
                     inputCell.inputV.placeholder = "请输入本地端口"
                     inputCell.inputV.enabled = true
-                    var localPort = ""
-                    if let v = self.session.localPort {
-                        localPort = String(v)
-                    }
-                    inputCell.inputV.text = localPort
+                    inputCell.inputV.text = String(self.session.localPort)
                     inputCell.inputV.rac_newTextChannel().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
-                        [unowned self, weak inputCell](x) -> Void in
-                        self.session.localPort = UInt16(inputCell?.inputV.text ?? "")
+                        [unowned self](x) -> Void in
+                        if let s = x as? String {
+                            if let p = Int(s) {
+                                self.session.localPort = p
+                            } else {
+                                self.session.localPort = 0
+                            }
+                        }
                     })
                 }
                 return cell
@@ -262,8 +264,14 @@ class TUAddSessionViewController: UIViewController, UITableViewDelegate, UITable
                     inputCell.inputV.placeholder = "请输入创建数量"
                     inputCell.inputV.text = String(self.session.linkCount)
                     inputCell.inputV.rac_newTextChannel().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
-                        [unowned self, weak inputCell](x) -> Void in
-                        self.session.localPort = UInt16(inputCell?.inputV.text ?? "")
+                        [unowned self](x) -> Void in
+                        if let s = x as? String {
+                            if let p = Int(s) {
+                                self.session.linkCount = p
+                            } else {
+                                self.session.linkCount = 0
+                            }
+                        }
                     })
                 }
                 return cell

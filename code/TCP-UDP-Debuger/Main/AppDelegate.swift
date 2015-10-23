@@ -9,6 +9,36 @@
 import UIKit
 import IQKeyboardManagerSwift
 
+import Haneke
+
+class TestClass: DataConvertible, DataRepresentable {
+    
+    typealias Result = TestClass
+
+    var number = 1
+    var name = "Steven"
+    
+    static func convertFromData(data:NSData) -> Result?
+    {
+        return TestClass()
+        
+    }
+
+    func asData() -> NSData!
+    {
+        let x = "xxxx"
+        let mirror = Mirror(reflecting: x)
+        print(mirror)
+        
+        return nil
+    }
+}
+
+struct TestStruct {
+    var num = 1
+    var name = "Steven"
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -20,6 +50,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().disableInViewControllerClass(TUSessionViewController)
         IQKeyboardManager.sharedManager().disableToolbarInViewControllerClass(TUSessionViewController)
+        
+//        let cache = Cache<TestClass>(name: "github")
+//
+//        let cache = Shared.dataCache
+        
+//        let x = TestClass()
+//        let mirror = Mirror(reflecting: x)
+//        print(mirror)
+        
+//        let v = ["x", "x1", "x2"]
+//        let dic = ["s": "b", "a": 9, "b": v]
+//        let data = try? NSJSONSerialization.dataWithJSONObject(dic, options: NSJSONWritingOptions.PrettyPrinted)
+//        print(data)
+//        
+//        // data to array
+//        // let data = NSData()
+//        let dicOrArray = try? NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+//        if let obj = dicOrArray as? NSDictionary {
+//            print(obj)
+//        }
+//        
+//        print(dicOrArray)
+        
+//        TUCache.shared.sessionItems[0]
+        
+//        let c = SSModel.ss_propertyItems(TestClass())
+//        print(c)
+//        
+//        let s = SSModel.ss_propertyItems(TestStruct())
+//        print(s)
+//        
+//        let b = SSModel.ss_propertyItems(TUSession())
+//        print(b)
+        
         return true
     }
 
