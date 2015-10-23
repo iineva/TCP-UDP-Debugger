@@ -24,19 +24,26 @@ class TUSessionViewController: TUBaseViewController, UITableViewDataSource, UITa
         }
     }
     var recieveStirngItems = [String]()
+    var isConnected = false
     
     @IBOutlet weak var inputField: UITextField!
     @IBOutlet weak var bottomToolbar: UIToolbar!
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    deinit {
+        self.connection?.disconnect()
+    }
+    
+    @IBOutlet weak var topRightItem: UIBarButtonItem!
+    @IBAction func onTopRightItemTouch(sender: AnyObject) {
+        if isConnected {
+            self.connection?.disconnect()
+        } else {
+            self.connection?.connect()
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // TODO for test.
-        AFMInfoBanner.showWithText("正在连接...", style: AFMInfoBannerStyle.Info, andHideAfter: 2)
         
         // 加入输入框
         toolbar = TUInputToolbar.create()
@@ -55,27 +62,45 @@ class TUSessionViewController: TUBaseViewController, UITableViewDataSource, UITa
         // 连接
         if let s = self.session {
             self.connection = TUSessionConnection(s)
-            self.connection?.connect()
             self.connection?.callBack({
-                [unowned self] (connection, event: TUSessionConnectionEven, tag, data) -> Void in
-                switch event {
-                case .Connected:
-                    AFMInfoBanner.showAndHideWithText("连接成功", style: AFMInfoBannerStyle.Info)
-                case .Didconnected:
-                    AFMInfoBanner.showAndHideWithText("连接断开", style: AFMInfoBannerStyle.Info)
-                case .ReadData:
-                    if let d = data {
-                        if let s = NSString(data: d, encoding: NSASCIIStringEncoding) {
-                            let string = String(s)
-                            self.recieveString.appendContentsOf(string)
-                            self.recieveStirngItems.append(string)
-                            print(string)
-                        }
-                    }
-                case .WriteData:
-                    print(tag)
-                }
+                [weak self] (connection, event: TUSessionConnectionEven, tag, data) -> Void in
+                self?.connectCallBack(connection, event: event, tag: tag, data: data)
             })
+            self.title = "\(self.session!.targetIP):\(self.session!.targetPort)"
+            self.startConnect()
+        }
+    }
+    
+    // 连接
+    func startConnect() {
+        self.topRightItem.enabled = false
+        AFMInfoBanner.showAndHideWithText("正在连接...", style: AFMInfoBannerStyle.Info)
+        self.connection?.connect()
+    }
+    
+    func connectCallBack(connection: TUSessionConnection, event: TUSessionConnectionEven, tag: Int?, data: NSData?) {
+        switch event {
+        case .Connected:
+            isConnected = true
+            AFMInfoBanner.showAndHideWithText("连接成功", style: AFMInfoBannerStyle.Info)
+            self.topRightItem.title = "断开连接"
+            self.topRightItem.enabled = true
+        case .Didconnected:
+            isConnected = false
+            AFMInfoBanner.showAndHideWithText("连接断开", style: AFMInfoBannerStyle.Error)
+            self.topRightItem.title = "点击连接"
+            self.topRightItem.enabled = true
+        case .ReadData:
+            if let d = data {
+                if let s = NSString(data: d, encoding: NSASCIIStringEncoding) {
+                    let string = String(s)
+                    self.recieveString.appendContentsOf(string)
+                    self.recieveStirngItems.append(string)
+                    print(string)
+                }
+            }
+        case .WriteData:
+            break
         }
     }
     

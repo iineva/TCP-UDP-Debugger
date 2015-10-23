@@ -41,20 +41,57 @@ class TUSessionConnection: GCDAsyncSocketDelegate, GCDAsyncUdpSocketDelegate {
         
         switch session.sessionProtocol {
         case .TCP:
+            
+            
             if self.tcpSocket == nil {
                 self.tcpSocket = GCDAsyncSocket(delegate: self, delegateQueue: dispatch_get_main_queue())
             }
+            
             if (self.tcpSocket?.isConnected != nil) {
-                try! self.tcpSocket?.connectToHost(session.targetIP, onPort: UInt16(session.targetPort))
+                if session.isRandomLocalPort {
+                    // 连接，本地随机端口
+                    try! self.tcpSocket?.connectToHost(session.targetIP, onPort: UInt16(session.targetPort))
+                } else {
+                    // 连接，指定本地端口
+                    try! self.tcpSocket?.connectToHost(session.targetIP, onPort: UInt16(session.targetPort), viaInterface: ":\(session.localPort)", withTimeout: 10)
+                }
                 self.tcpSocket?.readDataWithTimeout(-1, tag: 0)
             }
         case .UDP:
             if self.udpSocket == nil {
                 self.udpSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue: dispatch_get_main_queue())
             }
-            if (self.udpSocket?.isConnected == nil) {
-                try! self.udpSocket?.connectToHost(session.targetIP, onPort: UInt16(session.targetPort))
+            
+            if self.udpSocket!.isClosed() {
+                if session.isRandomLocalPort {
+                    // 侦听，随机本地端口
+                    do {
+                        try self.udpSocket?.bindToPort(0)
+                        self.callBackStore?(connection: self, event: .Connected, tag: nil, data: nil)
+                    } catch {
+                        self.callBackStore?(connection: self, event: .Didconnected, tag: nil, data: nil)
+                    }
+
+                } else {
+                    // 侦听，指定本机端口
+                    do {
+                        try self.udpSocket?.bindToPort(UInt16(session.localPort))
+                        try self.udpSocket?.receiveOnce()
+                        self.callBackStore?(connection: self, event: .Connected, tag: nil, data: nil)
+                    } catch {
+                        self.callBackStore?(connection: self, event: .Didconnected, tag: nil, data: nil)
+                    }
+                }
             }
+        }
+    }
+    
+    func disconnect() {
+        if self.tcpSocket != nil {
+            self.tcpSocket?.disconnect()
+        }
+        if self.udpSocket != nil {
+            self.udpSocket?.close()
         }
     }
     
@@ -66,33 +103,53 @@ class TUSessionConnection: GCDAsyncSocketDelegate, GCDAsyncUdpSocketDelegate {
             }
         case .UDP:
             if self.udpSocket != nil && self.udpSocket?.isConnected != nil {
-                self.udpSocket?.sendData(data, withTimeout: timeout, tag: tag)
+                self.udpSocket?.sendData(data, toHost: session.targetIP, port: UInt16(session.targetPort), withTimeout: timeout, tag: tag)
             }
         }
-
     }
     
+    /**
+        TCP Socket
+    */
     @objc func socket(sock: GCDAsyncSocket!, didConnectToHost host: String!, port: UInt16) {
         // 连接成功
-        print("连接成功: \(host)")
+        print("TCP:连接成功: \(host)")
         self.callBackStore?(connection: self, event: .Connected, tag: nil, data: nil)
     }
     @objc func socketDidDisconnect(sock: GCDAsyncSocket!, withError err: NSError!) {
         // 断开连接
-        print("连接断开")
+        print("TCP:连接断开")
         self.callBackStore?(connection: self, event: .Didconnected, tag: nil, data: nil)
     }
     @objc func socket(sock: GCDAsyncSocket!, didReadData data: NSData!, withTag tag: Int) {
         // 读取到数据
-        print("收到数据")
+        print("TCP:收到数据")
         self.callBackStore?(connection: self, event: .ReadData, tag: tag, data: data)
         sock.readDataWithTimeout(-1, tag: 0)
     }
     @objc func socket(sock: GCDAsyncSocket!, didWriteDataWithTag tag: Int) {
         // 写入数据成功
-        print("数据发送成功")
+        print("TCP:数据发送成功")
         self.callBackStore?(connection: self, event: .WriteData, tag: nil, data: nil)
     }
+    
+    /**
+        UDP Socket
+    */
+    @objc func udpSocket(sock: GCDAsyncUdpSocket!, didSendDataWithTag tag: Int) {
+        print("UDP:数据发送成功")
+        self.callBackStore?(connection: self, event: .WriteData, tag: nil, data: nil)
+    }
+    @objc func udpSocketDidClose(sock: GCDAsyncUdpSocket!, withError error: NSError!) {
+        print("UDP:连接断开")
+        self.callBackStore?(connection: self, event: .Didconnected, tag: nil, data: nil)
+    }
+    @objc func udpSocket(sock: GCDAsyncUdpSocket!, didReceiveData data: NSData!, fromAddress address: NSData!, withFilterContext filterContext: AnyObject!) {
+        print("UDP:收到数据")
+        self.callBackStore?(connection: self, event: .ReadData, tag: nil, data: data)
+        try! self.udpSocket?.receiveOnce()
+    }
+    
 }
 
 /// 连接管理器
