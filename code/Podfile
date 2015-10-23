@@ -1,5 +1,8 @@
 platform :ios, "8.0"
 
+# 忽略所有依赖库的警告
+inhibit_all_warnings!
+
 use_frameworks!
 
 pod 'CocoaAsyncSocket' # Socket封装

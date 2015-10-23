@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		477A307ACEEDC2C0BC15F7AF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FE4CD691446F759D41BBD2B /* Pods.framework */; };
+		477A307ACEEDC2C0BC15F7AF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FE4CD691446F759D41BBD2B /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B01892A71BD7EC7500D2790B /* TUSessionLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01892A61BD7EC7500D2790B /* TUSessionLabelCell.swift */; settings = {ASSET_TAGS = (); }; };
 		B01892A91BD7EDE000D2790B /* TUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01892A81BD7EDE000D2790B /* TUView.swift */; settings = {ASSET_TAGS = (); }; };
 		B0189BB81BD938260082E12D /* TUDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0189BB71BD938260082E12D /* TUDevice.swift */; settings = {ASSET_TAGS = (); }; };
 		B067FD251BD8D2EE00F3DC3E /* TUInputToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = B067FD241BD8D2EE00F3DC3E /* TUInputToolbar.xib */; settings = {ASSET_TAGS = (); }; };
 		B067FD271BD8D45E00F3DC3E /* TUInputToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067FD261BD8D45E00F3DC3E /* TUInputToolbar.swift */; settings = {ASSET_TAGS = (); }; };
 		B067FD291BD8FDA400F3DC3E /* TUSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067FD281BD8FDA400F3DC3E /* TUSessionManager.swift */; settings = {ASSET_TAGS = (); }; };
+		B07F0DB21BD9E22B00879E86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B07F0DB01BD9E22B00879E86 /* InfoPlist.strings */; settings = {ASSET_TAGS = (); }; };
 		B0FB27B91BD5410700E43133 /* TUAddSessionInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27AB1BD5410700E43133 /* TUAddSessionInputTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		B0FB27BA1BD5410700E43133 /* TUAddSessionIPAndPortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27AC1BD5410700E43133 /* TUAddSessionIPAndPortCell.swift */; settings = {ASSET_TAGS = (); }; };
 		B0FB27BB1BD5410700E43133 /* TUAddSessionSegmentedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27AD1BD5410700E43133 /* TUAddSessionSegmentedCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -41,6 +42,7 @@
 		B067FD241BD8D2EE00F3DC3E /* TUInputToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TUInputToolbar.xib; sourceTree = "<group>"; };
 		B067FD261BD8D45E00F3DC3E /* TUInputToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUInputToolbar.swift; sourceTree = "<group>"; };
 		B067FD281BD8FDA400F3DC3E /* TUSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUSessionManager.swift; sourceTree = "<group>"; };
+		B07F0DB11BD9E22B00879E86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B0D944A91BD2889E00A581A2 /* TCP-UDP-Debuger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TCP-UDP-Debuger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0FB27AB1BD5410700E43133 /* TUAddSessionInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUAddSessionInputTableViewCell.swift; sourceTree = "<group>"; };
 		B0FB27AC1BD5410700E43133 /* TUAddSessionIPAndPortCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUAddSessionIPAndPortCell.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 		B0FB27C41BD5415B00E43133 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				B07F0DB01BD9E22B00879E86 /* InfoPlist.strings */,
 				B0FB27C51BD5415B00E43133 /* AppDelegate.swift */,
 				B0FB27C61BD5415B00E43133 /* Assets.xcassets */,
 				B0FB27C71BD5415B00E43133 /* LaunchScreen.storyboard */,
@@ -232,6 +235,7 @@
 				B0FB27D01BD5415B00E43133 /* Main.storyboard in Resources */,
 				B0FB27CF1BD5415B00E43133 /* LaunchScreen.storyboard in Resources */,
 				B067FD251BD8D2EE00F3DC3E /* TUInputToolbar.xib in Resources */,
+				B07F0DB21BD9E22B00879E86 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +317,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		B07F0DB01BD9E22B00879E86 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B07F0DB11BD9E22B00879E86 /* Base */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		B0FB27C71BD5415B00E43133 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

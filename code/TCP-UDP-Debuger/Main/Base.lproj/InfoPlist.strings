@@ -1,0 +1,12 @@
+/* 
+  InfoPlist.strings
+  TCP-UDP-Debuger
+ 
+  Created by Steven on 15/10/17.
+  Copyright © 2015年 Neva. All rights reserved.
+*/
+
+/**
+ *  桌面显示App名字
+ */
+"CFBundleDisplayName" = "TUDebuger";
