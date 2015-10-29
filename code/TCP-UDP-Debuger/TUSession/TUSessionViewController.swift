@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import AFMInfoBanner
+import JDStatusBarNotification
+import SnapKit
 
 /// 会话控制器
 class TUSessionViewController: TUBaseViewController, UITableViewDataSource, UITableViewDelegate {
@@ -26,8 +27,8 @@ class TUSessionViewController: TUBaseViewController, UITableViewDataSource, UITa
     var recieveStirngItems = [String]()
     var isConnected = false
     
-    @IBOutlet weak var inputField: UITextField!
-    @IBOutlet weak var bottomToolbar: UIToolbar!
+    var isHexMode = false
+    var isChatMode = false
     
     deinit {
         self.connection?.disconnect()
@@ -42,6 +43,11 @@ class TUSessionViewController: TUBaseViewController, UITableViewDataSource, UITa
         }
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        JDStatusBarNotification.dismiss()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,6 +56,7 @@ class TUSessionViewController: TUBaseViewController, UITableViewDataSource, UITa
         toolbar?.sendStirng({
             [unowned self](string) -> Void in
             if let data = string.dataUsingEncoding(NSASCIIStringEncoding) {
+                // 发送输入的文字
                 self.connection?.sendData(data, tag: 0)
             }
         })
@@ -74,7 +81,9 @@ class TUSessionViewController: TUBaseViewController, UITableViewDataSource, UITa
     // 连接
     func startConnect() {
         self.topRightItem.enabled = false
-        AFMInfoBanner.showAndHideWithText("正在连接...", style: AFMInfoBannerStyle.Info)
+        
+        JDStatusBarNotification.showWithStatus("正在连接...")
+        JDStatusBarNotification.showActivityIndicator(true, indicatorStyle: UIActivityIndicatorViewStyle.Gray)
         self.connection?.connect()
     }
     
@@ -82,12 +91,12 @@ class TUSessionViewController: TUBaseViewController, UITableViewDataSource, UITa
         switch event {
         case .Connected:
             isConnected = true
-            AFMInfoBanner.showAndHideWithText("连接成功", style: AFMInfoBannerStyle.Info)
+            JDStatusBarNotification.showWithStatus("连接成功", dismissAfter: 1, styleName:JDStatusBarStyleSuccess)
             self.topRightItem.title = "断开连接"
             self.topRightItem.enabled = true
         case .Didconnected:
             isConnected = false
-            AFMInfoBanner.showAndHideWithText("连接断开", style: AFMInfoBannerStyle.Error)
+            JDStatusBarNotification.showWithStatus("连接断开", dismissAfter: 1, styleName:JDStatusBarStyleWarning)
             self.topRightItem.title = "点击连接"
             self.topRightItem.enabled = true
         case .ReadData:
@@ -112,10 +121,54 @@ class TUSessionViewController: TUBaseViewController, UITableViewDataSource, UITa
         self.view.endEditing(true)
     }
     
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        
+        if let cell = tableView.dequeueReusableCellWithIdentifier("menu") as? TUSessionMenuCell {
+            
+            view.addSubview(cell)
+            
+            // 相应menu按钮
+            cell.hexButton.selected = self.isHexMode
+            cell.hexButton.rac_signalForControlEvents(UIControlEvents.TouchUpInside).subscribeNext({
+                [weak self](x) -> Void in
+                if let button = x as? UIButton {
+                    button.selected = !button.selected
+                    self?.isHexMode = button.selected
+                    self?.tableView.reloadData()
+                }
+            })
+            cell.chatModeButton.selected = self.isChatMode
+            cell.chatModeButton.rac_signalForControlEvents(UIControlEvents.TouchUpInside).subscribeNext({
+                [weak self](x) -> Void in
+                if let button = x as? UIButton {
+                    button.selected = !button.selected
+                    self?.isChatMode = button.selected
+                    self?.tableView.reloadData()
+                }
+            })
+            
+            // 添加约束
+            cell.snp_makeConstraints(closure: { (make) -> Void in
+                make.edges.equalTo(view)
+            })
+        }
+        
+        return view
+    }
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell")
         if let c = cell as? TUSessionLabelCell {
-            c.contentLab.text = self.recieveString
+            if self.isHexMode {
+                c.contentLab.text = self.recieveString.hexString()
+            } else {
+                c.contentLab.text = self.recieveString
+            }
         }
         let height = cell!.contentView.viewHeightWithLimitWidth(tableView.frame.size.width)
         return height
@@ -124,7 +177,11 @@ class TUSessionViewController: TUBaseViewController, UITableViewDataSource, UITa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         if let c = cell as? TUSessionLabelCell {
-            c.contentLab.text = self.recieveString
+            if self.isHexMode {
+                c.contentLab.text = self.recieveString.hexString()
+            } else {
+                c.contentLab.text = self.recieveString
+            }
         }
         return cell
     }

@@ -8,23 +8,71 @@
 
 import UIKit
 import ReactiveCocoa
-import AFMInfoBanner
 
 /// 添加会话控制器
 class TUAddSessionViewController: TUBaseViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
+    // 是否多连接
+    var isMultiLink         = false
+    // 多连接,连接数
+    var linkCount           = 5
+    // 多连接选项: 目标IP递增
+    var multiLinkOptionsTargetIPIncrement    = false
+    // 多连接选项: 目标端口递增
+    var multiLinkOptionsTargetPortIncrement    = false
+    // 多连接选项: 本地端口递增
+    var multiLinkOptionsLocalPortIncrement    = false
+
+    // 当前设置的会话信息
     var session = TUSession()
     
+    // 编辑模式
     var editMode = false
     
     @IBAction func onSaveButtonTouch(sender: AnyObject) {
         // TODO 参数校验
+        
         if editMode {
+            
+            // 保存编辑模式数据
             TUCache.shared.sessionItems = TUCache.shared.sessionItems
+            
         } else {
-            TUCache.shared.sessionItems.insert(self.session, atIndex: 0)
+            
+            // 保存多链接创建
+            if self.isMultiLink {
+                
+                var items = TUCache.shared.sessionItems
+                
+                for i in 0..<self.linkCount {
+                    // 多连接选项: 目标IP递增
+                    if multiLinkOptionsTargetIPIncrement {
+                        // TODO IP 递增
+                    }
+                    // 多连接选项: 目标端口递增
+                    if multiLinkOptionsTargetPortIncrement {
+                        let session = TUSession(self.session)
+                        session.targetPort += i
+                        items.insert(session, atIndex: 0)
+                    }
+                    // 多连接选项: 本地端口递增(不启用随机端口才有效)
+                    if multiLinkOptionsLocalPortIncrement && !self.session.isRandomLocalPort {
+                        let session = TUSession(self.session)
+                        session.localPort += i
+                        items.insert(session, atIndex: 0)
+                    }
+                }
+                
+                TUCache.shared.sessionItems = items
+                
+            } else {
+            
+                // 保存单链接数据
+                TUCache.shared.sessionItems.insert(self.session, atIndex: 0)
+            
+            }
         }
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -38,7 +86,7 @@ class TUAddSessionViewController: TUBaseViewController, UITableViewDelegate, UIT
             }
         }
     }
-        
+    
     // 协议选择器
     @IBOutlet weak var protocolSegmented: UISegmentedControl!
     
@@ -81,7 +129,7 @@ class TUAddSessionViewController: TUBaseViewController, UITableViewDelegate, UIT
                 return 2
             }
         case 3:
-            if self.session.isMultiLink {
+            if self.isMultiLink {
                 return 3
             } else {
                 return 1
@@ -218,6 +266,7 @@ class TUAddSessionViewController: TUBaseViewController, UITableViewDelegate, UIT
                         } else {
                             self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Fade)
                         }
+                        self.tableView.reloadSections(NSIndexSet(index: indexPath.section+1), withRowAnimation: UITableViewRowAnimation.Fade)
                     })
                 }
                 return cell
@@ -245,12 +294,13 @@ class TUAddSessionViewController: TUBaseViewController, UITableViewDelegate, UIT
                 let cell = tableView.dequeueReusableCellWithIdentifier("switch", forIndexPath: indexPath)
                 if let switchCell = cell as? TUAddSessionSwitchCell {
                     switchCell.titleLab.text = "创建多个链接"
-                    switchCell.switchV.on = self.session.isMultiLink
+                    switchCell.switchV.on = self.isMultiLink
+                    switchCell.switchV.enabled = !self.editMode
                     switchCell.switchV.rac_signalForControlEvents(UIControlEvents.ValueChanged).takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
                         [unowned self, weak switchCell] (s) -> Void in
-                        self.session.isMultiLink = switchCell!.switchV.on
+                        self.isMultiLink = switchCell!.switchV.on
                         let indexPaths = [NSIndexPath(forRow: 1, inSection: indexPath.section), NSIndexPath(forRow: 2, inSection: indexPath.section)]
-                        if self.session.isMultiLink {
+                        if self.isMultiLink {
                             self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Fade)
                         } else {
                             self.tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Fade)
@@ -262,14 +312,14 @@ class TUAddSessionViewController: TUBaseViewController, UITableViewDelegate, UIT
                 let cell = tableView.dequeueReusableCellWithIdentifier("input", forIndexPath: indexPath)
                 if let inputCell = cell as? TUAddSessionInputTableViewCell {
                     inputCell.inputV.placeholder = "请输入创建数量"
-                    inputCell.inputV.text = String(self.session.linkCount)
+                    inputCell.inputV.text = String(self.linkCount)
                     inputCell.inputV.rac_newTextChannel().takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
                         [unowned self](x) -> Void in
                         if let s = x as? String {
                             if let p = Int(s) {
-                                self.session.linkCount = p
+                                self.linkCount = p
                             } else {
-                                self.session.linkCount = 0
+                                self.linkCount = 0
                             }
                         }
                     })
@@ -280,27 +330,28 @@ class TUAddSessionViewController: TUBaseViewController, UITableViewDelegate, UIT
                 if let selectorCell = cell as? TUAddSessionSelectorCell {
                     
                     // 目标IP递增
-                    selectorCell.button1.selected = self.session.multiLinkOptionsTargetIPIncrement
+                    selectorCell.button1.selected = self.multiLinkOptionsTargetIPIncrement
                     // 目标端口递增
-                    selectorCell.button2.selected = self.session.multiLinkOptionsTargetPortIncrement
+                    selectorCell.button2.selected = self.multiLinkOptionsTargetPortIncrement
                     // 本地端口递增
-                    selectorCell.button3.selected = self.session.multiLinkOptionsLocalPortIncrement
+                    selectorCell.button3.selected = self.multiLinkOptionsLocalPortIncrement
+                    selectorCell.button3.enabled = !self.session.isRandomLocalPort
                     
                     // 响应选中和取消选中
                     selectorCell.button1.rac_signalForControlEvents(UIControlEvents.TouchUpInside).takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
                         [unowned self, weak selectorCell] (s) -> Void in
                         selectorCell!.button1.selected = !selectorCell!.button1.selected
-                        self.session.multiLinkOptionsTargetIPIncrement = selectorCell!.button1.selected
+                        self.multiLinkOptionsTargetIPIncrement = selectorCell!.button1.selected
                     })
                     selectorCell.button2.rac_signalForControlEvents(UIControlEvents.TouchUpInside).takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
                         [unowned self, weak selectorCell] (s) -> Void in
                         selectorCell!.button2.selected = !selectorCell!.button2.selected
-                        self.session.multiLinkOptionsTargetPortIncrement = selectorCell!.button2.selected
+                        self.multiLinkOptionsTargetPortIncrement = selectorCell!.button2.selected
                     })
                     selectorCell.button3.rac_signalForControlEvents(UIControlEvents.TouchUpInside).takeUntil(cell.rac_prepareForReuseSignal).subscribeNext({
                         [unowned self, weak selectorCell] (s) -> Void in
                         selectorCell!.button3.selected = !selectorCell!.button3.selected
-                        self.session.multiLinkOptionsLocalPortIncrement = selectorCell!.button3.selected
+                        self.multiLinkOptionsLocalPortIncrement = selectorCell!.button3.selected
                     })
                 }
                 return cell

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15B38b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -20,7 +20,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="386" height="44"/>
                     <subviews>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Rii-cK-NFi">
-                            <rect key="frame" x="4" y="4" width="314" height="36"/>
+                            <rect key="frame" x="36" y="4" width="282" height="36"/>
                             <animations/>
                             <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -46,23 +46,29 @@
                                 <action selector="onSendButtonTouch:" destination="iN0-l3-epB" eventType="touchUpInside" id="Hs7-3s-QbN"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avh-l5-T6u">
+                            <rect key="frame" x="0.0" y="0.0" width="36" height="44"/>
+                            <animations/>
+                            <state key="normal" image="lock_N"/>
+                            <state key="selected" image="lock_H"/>
+                            <connections>
+                                <action selector="onLockBtnTouch:" destination="iN0-l3-epB" eventType="touchUpInside" id="WXL-RP-Mup"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="avh-l5-T6u" firstAttribute="top" secondItem="rNE-ch-wv3" secondAttribute="top" id="84l-j7-mML"/>
                         <constraint firstItem="ihk-vU-Mmu" firstAttribute="top" secondItem="rNE-ch-wv3" secondAttribute="top" constant="7" id="Fnd-pT-cBy"/>
-                        <constraint firstItem="Rii-cK-NFi" firstAttribute="leading" secondItem="rNE-ch-wv3" secondAttribute="leading" constant="4" id="I8n-mw-dpa"/>
                         <constraint firstAttribute="bottom" secondItem="Rii-cK-NFi" secondAttribute="bottom" constant="4" id="OC9-nU-1p1"/>
                         <constraint firstAttribute="trailing" secondItem="ihk-vU-Mmu" secondAttribute="trailing" constant="4" id="VC3-za-0bB"/>
                         <constraint firstItem="Rii-cK-NFi" firstAttribute="top" secondItem="rNE-ch-wv3" secondAttribute="top" constant="4" id="Y3C-7S-kSv"/>
-                        <constraint firstAttribute="bottom" secondItem="ihk-vU-Mmu" secondAttribute="bottom" constant="8" id="ehP-7j-69O"/>
                         <constraint firstItem="ihk-vU-Mmu" firstAttribute="leading" secondItem="Rii-cK-NFi" secondAttribute="trailing" constant="4" id="gUK-Ao-VZe"/>
+                        <constraint firstAttribute="bottom" secondItem="avh-l5-T6u" secondAttribute="bottom" id="igj-22-lVD"/>
+                        <constraint firstItem="Rii-cK-NFi" firstAttribute="leading" secondItem="avh-l5-T6u" secondAttribute="trailing" id="n8o-Cv-i1g"/>
+                        <constraint firstItem="avh-l5-T6u" firstAttribute="leading" secondItem="rNE-ch-wv3" secondAttribute="leading" id="v3b-B9-tMf"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="ehP-7j-69O"/>
-                        </mask>
-                    </variation>
                 </view>
             </subviews>
             <animations/>
@@ -79,6 +85,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="lockBtn" destination="avh-l5-T6u" id="6yx-zP-ODJ"/>
                 <outlet property="sendButton" destination="ihk-vU-Mmu" id="qDn-8A-mC3"/>
                 <outlet property="textView" destination="Rii-cK-NFi" id="hi1-dC-YfP"/>
                 <outlet property="textViewHeightConstraint" destination="ffO-AZ-8Of" id="gdY-lQ-ZKv"/>
@@ -86,4 +93,8 @@
             <point key="canvasLocation" x="267" y="111"/>
         </view>
     </objects>
+    <resources>
+        <image name="lock_H" width="36" height="36"/>
+        <image name="lock_N" width="36" height="36"/>
+    </resources>
 </document>

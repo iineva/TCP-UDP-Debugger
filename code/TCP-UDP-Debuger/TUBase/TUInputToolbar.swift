@@ -14,11 +14,18 @@ class TUInputToolbar: UIView, UITextViewDelegate {
     @IBOutlet private weak var sendButton: UIButton!
     @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var textViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var lockBtn: UIButton!
     
     @IBAction private func onSendButtonTouch(sender: AnyObject) {
         if self.textView.text != nil {
             if let c = sendStirngStore {
                 c(string: self.textView.text)
+            }
+            
+            // 发送后，如果没锁定，则清除输入框内容
+            if !lockBtn.selected {
+                self.textView.text = nil
+                self.textViewDidChange(self.textView)
             }
         }
     }
@@ -36,7 +43,6 @@ class TUInputToolbar: UIView, UITextViewDelegate {
     func heightChange(block: (height: CGFloat) -> Void) {
         heightChangeStore = block
     }
-
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,6 +51,10 @@ class TUInputToolbar: UIView, UITextViewDelegate {
         self.textView.layer.cornerRadius = 4.0
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:Selector("onKeyboardHeightDidChange:"), name: UIKeyboardWillChangeFrameNotification, object: nil)
+    }
+    
+    @IBAction private func onLockBtnTouch(sender: UIButton) {
+        sender.selected = !sender.selected
     }
     
     override func layoutSubviews() {
@@ -112,6 +122,7 @@ class TUInputToolbar: UIView, UITextViewDelegate {
         UIView.animateWithDuration(0.3, animations: { () -> Void in
             self.layoutIfNeeded()
         }) { (fineshed) -> Void in
+            
         }
     }
 }

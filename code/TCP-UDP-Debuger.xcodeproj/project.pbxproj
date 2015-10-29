@@ -7,31 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		477A307ACEEDC2C0BC15F7AF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FE4CD691446F759D41BBD2B /* Pods.framework */; };
-		B01892A71BD7EC7500D2790B /* TUSessionLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01892A61BD7EC7500D2790B /* TUSessionLabelCell.swift */; settings = {ASSET_TAGS = (); }; };
-		B01892A91BD7EDE000D2790B /* TUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01892A81BD7EDE000D2790B /* TUView.swift */; settings = {ASSET_TAGS = (); }; };
-		B0189BB81BD938260082E12D /* TUDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0189BB71BD938260082E12D /* TUDevice.swift */; settings = {ASSET_TAGS = (); }; };
-		B067FD251BD8D2EE00F3DC3E /* TUInputToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = B067FD241BD8D2EE00F3DC3E /* TUInputToolbar.xib */; settings = {ASSET_TAGS = (); }; };
-		B067FD271BD8D45E00F3DC3E /* TUInputToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067FD261BD8D45E00F3DC3E /* TUInputToolbar.swift */; settings = {ASSET_TAGS = (); }; };
-		B067FD291BD8FDA400F3DC3E /* TUSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067FD281BD8FDA400F3DC3E /* TUSessionManager.swift */; settings = {ASSET_TAGS = (); }; };
-		B07F0DB21BD9E22B00879E86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B07F0DB01BD9E22B00879E86 /* InfoPlist.strings */; settings = {ASSET_TAGS = (); }; };
-		B07F0DB41BDA1D7800879E86 /* SSModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F0DB31BDA1D7800879E86 /* SSModel.swift */; settings = {ASSET_TAGS = (); }; };
-		B07F0DCB1BDA477200879E86 /* TUBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F0DCA1BDA477200879E86 /* TUBaseViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		B0FB27B91BD5410700E43133 /* TUAddSessionInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27AB1BD5410700E43133 /* TUAddSessionInputTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
-		B0FB27BA1BD5410700E43133 /* TUAddSessionIPAndPortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27AC1BD5410700E43133 /* TUAddSessionIPAndPortCell.swift */; settings = {ASSET_TAGS = (); }; };
-		B0FB27BB1BD5410700E43133 /* TUAddSessionSegmentedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27AD1BD5410700E43133 /* TUAddSessionSegmentedCell.swift */; settings = {ASSET_TAGS = (); }; };
-		B0FB27BC1BD5410700E43133 /* TUAddSessionSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27AE1BD5410700E43133 /* TUAddSessionSelectorCell.swift */; settings = {ASSET_TAGS = (); }; };
-		B0FB27BD1BD5410700E43133 /* TUAddSessionSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27AF1BD5410700E43133 /* TUAddSessionSwitchCell.swift */; settings = {ASSET_TAGS = (); }; };
-		B0FB27BE1BD5410700E43133 /* TUAddSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27B01BD5410700E43133 /* TUAddSessionViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		B0FB27BF1BD5410700E43133 /* TUCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27B21BD5410700E43133 /* TUCache.swift */; settings = {ASSET_TAGS = (); }; };
-		B0FB27C01BD5410700E43133 /* TUSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27B31BD5410700E43133 /* TUSession.swift */; settings = {ASSET_TAGS = (); }; };
-		B0FB27C31BD5410700E43133 /* TUSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27B81BD5410700E43133 /* TUSessionViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		B0FB27CD1BD5415B00E43133 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27C51BD5415B00E43133 /* AppDelegate.swift */; settings = {ASSET_TAGS = (); }; };
-		B0FB27CE1BD5415B00E43133 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0FB27C61BD5415B00E43133 /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
-		B0FB27CF1BD5415B00E43133 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0FB27C71BD5415B00E43133 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
-		B0FB27D01BD5415B00E43133 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0FB27C91BD5415B00E43133 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
-		B0FB27D21BD5415B00E43133 /* TUViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27CC1BD5415B00E43133 /* TUViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		B0FB27D41BD541A400E43133 /* TUViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27D31BD541A400E43133 /* TUViewControllerCell.swift */; settings = {ASSET_TAGS = (); }; };
+		477A307ACEEDC2C0BC15F7AF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FE4CD691446F759D41BBD2B /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		B01892A71BD7EC7500D2790B /* TUSessionLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01892A61BD7EC7500D2790B /* TUSessionLabelCell.swift */; };
+		B01892A91BD7EDE000D2790B /* TUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01892A81BD7EDE000D2790B /* TUView.swift */; };
+		B0189BB81BD938260082E12D /* TUDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0189BB71BD938260082E12D /* TUDevice.swift */; };
+		B067FD251BD8D2EE00F3DC3E /* TUInputToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = B067FD241BD8D2EE00F3DC3E /* TUInputToolbar.xib */; };
+		B067FD271BD8D45E00F3DC3E /* TUInputToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067FD261BD8D45E00F3DC3E /* TUInputToolbar.swift */; };
+		B067FD291BD8FDA400F3DC3E /* TUSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067FD281BD8FDA400F3DC3E /* TUSessionManager.swift */; };
+		B07F0DB21BD9E22B00879E86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B07F0DB01BD9E22B00879E86 /* InfoPlist.strings */; };
+		B07F0DB41BDA1D7800879E86 /* SSModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F0DB31BDA1D7800879E86 /* SSModel.swift */; };
+		B07F0DCB1BDA477200879E86 /* TUBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F0DCA1BDA477200879E86 /* TUBaseViewController.swift */; };
+		B0F5EFCB1BE1C561009F1FA8 /* TUString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F5EFCA1BE1C561009F1FA8 /* TUString.swift */; };
+		B0F5EFCD1BE230F4009F1FA8 /* TUSessionMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F5EFCC1BE230F4009F1FA8 /* TUSessionMenuCell.swift */; };
+		B0FB27B91BD5410700E43133 /* TUAddSessionInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27AB1BD5410700E43133 /* TUAddSessionInputTableViewCell.swift */; };
+		B0FB27BA1BD5410700E43133 /* TUAddSessionIPAndPortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27AC1BD5410700E43133 /* TUAddSessionIPAndPortCell.swift */; };
+		B0FB27BB1BD5410700E43133 /* TUAddSessionSegmentedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27AD1BD5410700E43133 /* TUAddSessionSegmentedCell.swift */; };
+		B0FB27BC1BD5410700E43133 /* TUAddSessionSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27AE1BD5410700E43133 /* TUAddSessionSelectorCell.swift */; };
+		B0FB27BD1BD5410700E43133 /* TUAddSessionSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27AF1BD5410700E43133 /* TUAddSessionSwitchCell.swift */; };
+		B0FB27BE1BD5410700E43133 /* TUAddSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27B01BD5410700E43133 /* TUAddSessionViewController.swift */; };
+		B0FB27BF1BD5410700E43133 /* TUCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27B21BD5410700E43133 /* TUCache.swift */; };
+		B0FB27C01BD5410700E43133 /* TUSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27B31BD5410700E43133 /* TUSession.swift */; };
+		B0FB27C31BD5410700E43133 /* TUSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27B81BD5410700E43133 /* TUSessionViewController.swift */; };
+		B0FB27CD1BD5415B00E43133 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27C51BD5415B00E43133 /* AppDelegate.swift */; };
+		B0FB27CE1BD5415B00E43133 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0FB27C61BD5415B00E43133 /* Assets.xcassets */; };
+		B0FB27CF1BD5415B00E43133 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0FB27C71BD5415B00E43133 /* LaunchScreen.storyboard */; };
+		B0FB27D01BD5415B00E43133 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0FB27C91BD5415B00E43133 /* Main.storyboard */; };
+		B0FB27D21BD5415B00E43133 /* TUViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27CC1BD5415B00E43133 /* TUViewController.swift */; };
+		B0FB27D41BD541A400E43133 /* TUViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB27D31BD541A400E43133 /* TUViewControllerCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		B07F0DB31BDA1D7800879E86 /* SSModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSModel.swift; sourceTree = "<group>"; };
 		B07F0DCA1BDA477200879E86 /* TUBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUBaseViewController.swift; sourceTree = "<group>"; };
 		B0D944A91BD2889E00A581A2 /* TCP-UDP-Debuger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TCP-UDP-Debuger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0F5EFCA1BE1C561009F1FA8 /* TUString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUString.swift; sourceTree = "<group>"; };
+		B0F5EFCC1BE230F4009F1FA8 /* TUSessionMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUSessionMenuCell.swift; sourceTree = "<group>"; };
 		B0FB27AB1BD5410700E43133 /* TUAddSessionInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUAddSessionInputTableViewCell.swift; sourceTree = "<group>"; };
 		B0FB27AC1BD5410700E43133 /* TUAddSessionIPAndPortCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUAddSessionIPAndPortCell.swift; sourceTree = "<group>"; };
 		B0FB27AD1BD5410700E43133 /* TUAddSessionSegmentedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUAddSessionSegmentedCell.swift; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 				B0FB27B31BD5410700E43133 /* TUSession.swift */,
 				B01892A81BD7EDE000D2790B /* TUView.swift */,
 				B0189BB71BD938260082E12D /* TUDevice.swift */,
+				B0F5EFCA1BE1C561009F1FA8 /* TUString.swift */,
 				B067FD241BD8D2EE00F3DC3E /* TUInputToolbar.xib */,
 				B067FD261BD8D45E00F3DC3E /* TUInputToolbar.swift */,
 				B07F0DCA1BDA477200879E86 /* TUBaseViewController.swift */,
@@ -140,6 +145,7 @@
 				B0FB27B81BD5410700E43133 /* TUSessionViewController.swift */,
 				B067FD281BD8FDA400F3DC3E /* TUSessionManager.swift */,
 				B01892A61BD7EC7500D2790B /* TUSessionLabelCell.swift */,
+				B0F5EFCC1BE230F4009F1FA8 /* TUSessionMenuCell.swift */,
 			);
 			path = TUSession;
 			sourceTree = "<group>";
@@ -305,6 +311,7 @@
 				B01892A91BD7EDE000D2790B /* TUView.swift in Sources */,
 				B0FB27BE1BD5410700E43133 /* TUAddSessionViewController.swift in Sources */,
 				B0FB27BC1BD5410700E43133 /* TUAddSessionSelectorCell.swift in Sources */,
+				B0F5EFCB1BE1C561009F1FA8 /* TUString.swift in Sources */,
 				B0FB27BB1BD5410700E43133 /* TUAddSessionSegmentedCell.swift in Sources */,
 				B0FB27BD1BD5410700E43133 /* TUAddSessionSwitchCell.swift in Sources */,
 				B07F0DB41BDA1D7800879E86 /* SSModel.swift in Sources */,
@@ -314,6 +321,7 @@
 				B067FD291BD8FDA400F3DC3E /* TUSessionManager.swift in Sources */,
 				B067FD271BD8D45E00F3DC3E /* TUInputToolbar.swift in Sources */,
 				B0FB27C31BD5410700E43133 /* TUSessionViewController.swift in Sources */,
+				B0F5EFCD1BE230F4009F1FA8 /* TUSessionMenuCell.swift in Sources */,
 				B0FB27BF1BD5410700E43133 /* TUCache.swift in Sources */,
 				B0FB27D41BD541A400E43133 /* TUViewControllerCell.swift in Sources */,
 				B07F0DCB1BDA477200879E86 /* TUBaseViewController.swift in Sources */,

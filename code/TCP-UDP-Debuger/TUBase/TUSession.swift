@@ -29,6 +29,21 @@ enum TUSessionMode: Int {
 /// 会话信息
 class TUSession: JSONModel {
     
+    convenience init(_ session: TUSession) {
+        self.init()
+        self.sessionProtocol = session.sessionProtocol
+        self.mode = session.mode
+        self.targetIP = session.targetIP
+        self.targetPort = session.targetPort
+        self.isRandomLocalPort = session.isRandomLocalPort
+        self.localPort = session.localPort
+        self.autoDisconnectLinkDelay = session.autoDisconnectLinkDelay
+        self.isAutoDisconnectLinkDelay = session.isAutoDisconnectLinkDelay
+        self.sendPackgetSize = session.sendPackgetSize
+        self.receiveBufferSize = session.receiveBufferSize
+        self.sendQueueDelay = session.sendQueueDelay
+    }
+    
     // 会话协议
     var sessionProtocol = TUSessionProtocol.TCP {
         willSet {
@@ -97,14 +112,4 @@ class TUSession: JSONModel {
     // 数据队列发送延时(ms)
     var sendQueueDelay      = 20
     
-    // 是否多连接
-    var isMultiLink         = false
-    // 多连接,连接数
-    var linkCount           = 5
-    // 多连接选项: 目标IP递增
-    var multiLinkOptionsTargetIPIncrement    = false
-    // 多连接选项: 目标端口递增
-    var multiLinkOptionsTargetPortIncrement    = false
-    // 多连接选项: 本地端口递增
-    var multiLinkOptionsLocalPortIncrement    = false
 }

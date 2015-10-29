@@ -1,43 +1,40 @@
 PODS:
-  - AFMInfoBanner (1.1):
-    - CVKHierarchySearcher (~> 0.2)
   - CocoaAsyncSocket (7.4.2)
-  - CVKHierarchySearcher (0.2.0)
-  - IQKeyboardManagerSwift (3.3.3)
+  - IQKeyboardManagerSwift (3.3.4)
+  - JDStatusBarNotification (1.5.2)
   - JSONModel (1.1.2)
   - PINCache (2.1)
-  - ReactiveCocoa (4.0.2-alpha-1):
-    - ReactiveCocoa/UI (= 4.0.2-alpha-1)
+  - ReactiveCocoa (4.0.4-alpha-1):
+    - ReactiveCocoa/UI (= 4.0.4-alpha-1)
     - Result (~> 0.6-beta.1)
-  - ReactiveCocoa/Core (4.0.2-alpha-1):
+  - ReactiveCocoa/Core (4.0.4-alpha-1):
     - ReactiveCocoa/no-arc
     - Result (~> 0.6-beta.1)
-  - ReactiveCocoa/no-arc (4.0.2-alpha-1):
+  - ReactiveCocoa/no-arc (4.0.4-alpha-1):
     - Result (~> 0.6-beta.1)
-  - ReactiveCocoa/UI (4.0.2-alpha-1):
+  - ReactiveCocoa/UI (4.0.4-alpha-1):
     - ReactiveCocoa/Core
     - Result (~> 0.6-beta.1)
-  - Result (0.6.0-beta.4)
-  - SnapKit (0.15.0)
+  - Result (0.6.0-beta.5)
+  - SnapKit (0.16.0)
 
 DEPENDENCIES:
-  - AFMInfoBanner
   - CocoaAsyncSocket
   - IQKeyboardManagerSwift
+  - JDStatusBarNotification
   - JSONModel
   - PINCache
-  - ReactiveCocoa (= 4.0.2-alpha-1)
+  - ReactiveCocoa (= 4.0.4-alpha-1)
   - SnapKit
 
 SPEC CHECKSUMS:
-  AFMInfoBanner: 207a0622fdfc6bff3e8d04ac557932f3d6849425
   CocoaAsyncSocket: f5783bdedd232d91b89769bc4b5a1580aed518ad
-  CVKHierarchySearcher: 7be8d3bcbcc6f86ff07f785e6c632b5e40da2553
-  IQKeyboardManagerSwift: e203e78db78697dbc1a213eb71dd1282f66f4156
+  IQKeyboardManagerSwift: 6f2290d093f5269dc07bdae8bc58e968cf9c4738
+  JDStatusBarNotification: a36d09ccbb047217572b074a61e7ca10dddc5f0a
   JSONModel: 216584d0311b053ff714f1d6cb700dbf890847bc
   PINCache: 0581b0a7578fc0bbc6c7a8b70b0615388bea064c
-  ReactiveCocoa: 652cf90e5de65708e7e2111f77405756da21aabe
-  Result: f7927152cbaec0c043abb06ba0bc432678818418
-  SnapKit: 4962eed2ee18e48cbd2b2292fffc57efe7235f87
+  ReactiveCocoa: 618a2fc13d4ed80e380aa6fa56547cef43c7341d
+  Result: 8ae33a29ed1e147514b9536de523a978d7faba1f
+  SnapKit: ddac6b339d571f9d80dbb733585b172ee9eed3cb
 
-COCOAPODS: 0.39.0
+COCOAPODS: 0.38.2

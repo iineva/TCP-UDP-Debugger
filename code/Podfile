@@ -7,14 +7,14 @@ use_frameworks!
 
 pod 'CocoaAsyncSocket' # Socket封装
 
-pod 'AFMInfoBanner' # 绿色成功红色警告失败，在导航栏下方弹出
+pod 'JDStatusBarNotification' # 状态栏提示
 
 #pod 'Mantle'        # Json模型
 pod 'JSONModel'        # Json模型
 
 pod 'PINCache'      # 缓存库
 
-pod 'ReactiveCocoa', '4.0.2-alpha-1' # 响应式编程框架
+pod 'ReactiveCocoa', '4.0.4-alpha-1' # 响应式编程框架
 
 pod 'IQKeyboardManagerSwift' # 防止键盘遮挡的库
 
