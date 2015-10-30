@@ -18,13 +18,13 @@ class TUSessionViewController: TUBaseViewController, UITableViewDataSource, UITa
     var session : TUSession?
     var connection: TUSessionConnection?
     var toolbar: TUInputToolbar?
-    var recieveString = "" {
+    var recieveData = NSMutableData() {
         didSet {
             self.tableView.reloadData()
             self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
         }
     }
-    var recieveStirngItems = [String]()
+    var recieveDataItems = [NSData]()
     var isConnected = false
     
     var isHexMode = false
@@ -55,7 +55,7 @@ class TUSessionViewController: TUBaseViewController, UITableViewDataSource, UITa
         toolbar = TUInputToolbar.create()
         toolbar?.sendStirng({
             [unowned self](string) -> Void in
-            if let data = string.dataUsingEncoding(NSASCIIStringEncoding) {
+            if let data = string.dataUsingEncoding(NSUTF8StringEncoding) {
                 // 发送输入的文字
                 self.connection?.sendData(data, tag: 0)
             }
@@ -70,8 +70,8 @@ class TUSessionViewController: TUBaseViewController, UITableViewDataSource, UITa
         if let s = self.session {
             self.connection = TUSessionConnection(s)
             self.connection?.callBack({
-                [weak self] (connection, event: TUSessionConnectionEven, tag, data) -> Void in
-                self?.connectCallBack(connection, event: event, tag: tag, data: data)
+                [weak self] (connection, event: TUSessionConnectionEven, tag, packet) -> Void in
+                self?.connectCallBack(connection, event: event, tag: tag, packet: packet)
             })
             self.title = "\(self.session!.targetIP):\(self.session!.targetPort)"
             self.startConnect()
@@ -87,7 +87,7 @@ class TUSessionViewController: TUBaseViewController, UITableViewDataSource, UITa
         self.connection?.connect()
     }
     
-    func connectCallBack(connection: TUSessionConnection, event: TUSessionConnectionEven, tag: Int?, data: NSData?) {
+    func connectCallBack(connection: TUSessionConnection, event: TUSessionConnectionEven, tag: Int?, packet: TUPacket?) {
         switch event {
         case .Connected:
             isConnected = true
@@ -100,13 +100,10 @@ class TUSessionViewController: TUBaseViewController, UITableViewDataSource, UITa
             self.topRightItem.title = "点击连接"
             self.topRightItem.enabled = true
         case .ReadData:
-            if let d = data {
-                if let s = NSString(data: d, encoding: NSASCIIStringEncoding) {
-                    let string = String(s)
-                    self.recieveString.appendContentsOf(string)
-                    self.recieveStirngItems.append(string)
-                    print(string)
-                }
+            if let p = packet {
+                // 接收到数据
+                self.recieveDataItems.append(p.data)
+                self.recieveData.appendData(p.data)
             }
         case .WriteData:
             break
@@ -162,27 +159,29 @@ class TUSessionViewController: TUBaseViewController, UITableViewDataSource, UITa
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell")
-        if let c = cell as? TUSessionLabelCell {
-            if self.isHexMode {
-                c.contentLab.text = self.recieveString.hexString()
-            } else {
-                c.contentLab.text = self.recieveString
-            }
-        }
-        let height = cell!.contentView.viewHeightWithLimitWidth(tableView.frame.size.width)
-        return height
+        return cellForIndexPath(nil).viewHeightWithLimitWidth(tableView.frame.size.width)
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        return self.cellForIndexPath(indexPath)
+    }
+    
+    func cellForIndexPath(indexPath: NSIndexPath?) -> UITableViewCell {
+        
+        var cell : UITableViewCell? = nil;
+        if let index = indexPath {
+            cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: index)
+        } else {
+            cell = tableView.dequeueReusableCellWithIdentifier("cell")
+        }
+        
         if let c = cell as? TUSessionLabelCell {
             if self.isHexMode {
-                c.contentLab.text = self.recieveString.hexString()
+                c.contentLab.text = self.recieveData.hexString;
             } else {
-                c.contentLab.text = self.recieveString
+                c.contentLab.text = String(data: self.recieveData, encoding: NSUTF8StringEncoding)
             }
         }
-        return cell
+        return cell!
     }
 }

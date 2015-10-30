@@ -14,7 +14,7 @@ enum TUSessionConnectionEven {
 }
 
 
-typealias TUSessionConnectionBlock = (connection: TUSessionConnection, event: TUSessionConnectionEven, tag: Int?, data: NSData?) -> Void
+typealias TUSessionConnectionBlock = (connection: TUSessionConnection, event: TUSessionConnectionEven, tag: Int?, packet: TUPacket?) -> Void
 
 class TUSessionConnection: GCDAsyncSocketDelegate, GCDAsyncUdpSocketDelegate {
     
@@ -67,9 +67,9 @@ class TUSessionConnection: GCDAsyncSocketDelegate, GCDAsyncUdpSocketDelegate {
                     // 侦听，随机本地端口
                     do {
                         try self.udpSocket?.bindToPort(0)
-                        self.callBackStore?(connection: self, event: .Connected, tag: nil, data: nil)
+                        self.callBackStore?(connection: self, event: .Connected, tag: nil, packet: nil)
                     } catch {
-                        self.callBackStore?(connection: self, event: .Didconnected, tag: nil, data: nil)
+                        self.callBackStore?(connection: self, event: .Didconnected, tag: nil, packet: nil)
                     }
 
                 } else {
@@ -77,9 +77,9 @@ class TUSessionConnection: GCDAsyncSocketDelegate, GCDAsyncUdpSocketDelegate {
                     do {
                         try self.udpSocket?.bindToPort(UInt16(session.localPort))
                         try self.udpSocket?.receiveOnce()
-                        self.callBackStore?(connection: self, event: .Connected, tag: nil, data: nil)
+                        self.callBackStore?(connection: self, event: .Connected, tag: nil, packet: nil)
                     } catch {
-                        self.callBackStore?(connection: self, event: .Didconnected, tag: nil, data: nil)
+                        self.callBackStore?(connection: self, event: .Didconnected, tag: nil, packet: nil)
                     }
                 }
             }
@@ -114,23 +114,24 @@ class TUSessionConnection: GCDAsyncSocketDelegate, GCDAsyncUdpSocketDelegate {
     @objc func socket(sock: GCDAsyncSocket!, didConnectToHost host: String!, port: UInt16) {
         // 连接成功
         print("TCP:连接成功: \(host)")
-        self.callBackStore?(connection: self, event: .Connected, tag: nil, data: nil)
+        self.callBackStore?(connection: self, event: .Connected, tag: nil, packet: nil)
     }
     @objc func socketDidDisconnect(sock: GCDAsyncSocket!, withError err: NSError!) {
         // 断开连接
         print("TCP:连接断开")
-        self.callBackStore?(connection: self, event: .Didconnected, tag: nil, data: nil)
+        self.callBackStore?(connection: self, event: .Didconnected, tag: nil, packet: nil)
     }
     @objc func socket(sock: GCDAsyncSocket!, didReadData data: NSData!, withTag tag: Int) {
         // 读取到数据
         print("TCP:收到数据")
-        self.callBackStore?(connection: self, event: .ReadData, tag: tag, data: data)
+        let packet = TUPacket(data: data, fromHost:sock.connectedHost, targetHost: sock.localHost)
+        self.callBackStore?(connection: self, event: .ReadData, tag: tag, packet: packet)
         sock.readDataWithTimeout(-1, tag: 0)
     }
     @objc func socket(sock: GCDAsyncSocket!, didWriteDataWithTag tag: Int) {
         // 写入数据成功
         print("TCP:数据发送成功")
-        self.callBackStore?(connection: self, event: .WriteData, tag: nil, data: nil)
+        self.callBackStore?(connection: self, event: .WriteData, tag: nil, packet: nil)
     }
     
     /**
@@ -138,15 +139,16 @@ class TUSessionConnection: GCDAsyncSocketDelegate, GCDAsyncUdpSocketDelegate {
     */
     @objc func udpSocket(sock: GCDAsyncUdpSocket!, didSendDataWithTag tag: Int) {
         print("UDP:数据发送成功")
-        self.callBackStore?(connection: self, event: .WriteData, tag: nil, data: nil)
+        self.callBackStore?(connection: self, event: .WriteData, tag: nil, packet: nil)
     }
     @objc func udpSocketDidClose(sock: GCDAsyncUdpSocket!, withError error: NSError!) {
         print("UDP:连接断开")
-        self.callBackStore?(connection: self, event: .Didconnected, tag: nil, data: nil)
+        self.callBackStore?(connection: self, event: .Didconnected, tag: nil, packet: nil)
     }
     @objc func udpSocket(sock: GCDAsyncUdpSocket!, didReceiveData data: NSData!, fromAddress address: NSData!, withFilterContext filterContext: AnyObject!) {
         print("UDP:收到数据")
-        self.callBackStore?(connection: self, event: .ReadData, tag: nil, data: data)
+        let packet = TUPacket(data: data, fromHost:String(data: address, encoding: NSUTF8StringEncoding) ?? "", targetHost: sock.localHost())
+        self.callBackStore?(connection: self, event: .ReadData, tag: nil, packet: packet)
         try! self.udpSocket?.receiveOnce()
     }
     
